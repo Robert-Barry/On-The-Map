@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AD47401C76A50A0005B0B2 /* LoginViewController.swift */; };
+		31AD47431C76A6610005B0B2 /* LoginTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AD47421C76A6610005B0B2 /* LoginTextFieldDelegate.swift */; };
 		31FB470D1C75000900B2E27E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FB470C1C75000900B2E27E /* AppDelegate.swift */; };
-		31FB470F1C75000900B2E27E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FB470E1C75000900B2E27E /* LoginViewController.swift */; };
 		31FB47121C75000900B2E27E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31FB47101C75000900B2E27E /* Main.storyboard */; };
 		31FB47141C75000900B2E27E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31FB47131C75000900B2E27E /* Assets.xcassets */; };
 		31FB47171C75000900B2E27E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31FB47151C75000900B2E27E /* LaunchScreen.storyboard */; };
@@ -34,9 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31AD47401C76A50A0005B0B2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		31AD47421C76A6610005B0B2 /* LoginTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextFieldDelegate.swift; sourceTree = "<group>"; };
 		31FB47091C75000900B2E27E /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31FB470C1C75000900B2E27E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		31FB470E1C75000900B2E27E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		31FB47111C75000900B2E27E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		31FB47131C75000900B2E27E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31FB47161C75000900B2E27E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31AD473D1C76A2140005B0B2 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				31AD47421C76A6610005B0B2 /* LoginTextFieldDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		31FB47001C75000800B2E27E = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +107,7 @@
 		31FB470B1C75000900B2E27E /* On The Map */ = {
 			isa = PBXGroup;
 			children = (
+				31AD473D1C76A2140005B0B2 /* Delegates */,
 				31FB473D1C75005F00B2E27E /* Model */,
 				31FB473E1C75007E00B2E27E /* View */,
 				31FB473F1C75008400B2E27E /* Controllers */,
@@ -168,7 +179,7 @@
 		31FB473F1C75008400B2E27E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				31FB470E1C75000900B2E27E /* LoginViewController.swift */,
+				31AD47401C76A50A0005B0B2 /* LoginViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -307,7 +318,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31FB470F1C75000900B2E27E /* LoginViewController.swift in Sources */,
+				31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */,
+				31AD47431C76A6610005B0B2 /* LoginTextFieldDelegate.swift in Sources */,
 				31FB470D1C75000900B2E27E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +545,7 @@
 				31FB47331C75000900B2E27E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		31FB47341C75000900B2E27E /* Build configuration list for PBXNativeTarget "On The MapTests" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +554,7 @@
 				31FB47361C75000900B2E27E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		31FB47371C75000900B2E27E /* Build configuration list for PBXNativeTarget "On The MapUITests" */ = {
 			isa = XCConfigurationList;
@@ -549,6 +563,7 @@
 				31FB47391C75000900B2E27E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
