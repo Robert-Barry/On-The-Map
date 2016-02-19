@@ -12,10 +12,12 @@ class LoginViewController: UIViewController {
     
     // CONSTANTS
     let loginTextFieldDelegate = LoginTextFieldDelegate()
+    let warningColor = UIColor(colorLiteralRed: 1.0, green: 0.58, blue: 0.58, alpha: 1.0)
     
     // OUTLETS
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginLabel: UILabel!
     
     
     
@@ -39,6 +41,21 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         
         subscribeToKeyboardNotifications()
+    }
+    
+    
+    
+    // ACTIONS
+    @IBAction func loginToUdacity(sender: AnyObject) {
+        
+        if emailTextField.text == "" || passwordTextField.text == "" {
+            loginLabel.font = loginLabel.font.fontWithSize(16)
+            loginLabel.textColor = warningColor
+            loginLabel.text = "Enter a valid email and password!"
+        } else {
+            print("Button pressed")
+        }
+        
     }
     
     
