@@ -52,6 +52,10 @@ class LoginViewController: UIViewController {
             loginLabel.font = loginLabel.font.fontWithSize(16)
             loginLabel.textColor = warningColor
             loginLabel.text = "Enter a valid email and password!"
+        } else if !isValidEmail(emailTextField.text!) {
+            loginLabel.font = loginLabel.font.fontWithSize(16)
+            loginLabel.textColor = warningColor
+            loginLabel.text = "Enter a valid email address!"
         } else {
             print("Button pressed")
         }
@@ -93,6 +97,14 @@ class LoginViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
         
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        // println("validate calendar: \(testStr)")
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
     }
 
 }
