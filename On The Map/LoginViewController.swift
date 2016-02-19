@@ -19,6 +19,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginLabel: UILabel!
     
+    // VARIABLES
+    var email: String!
+    var password: String!
+    
     
     
     // IOS OVERRIDES
@@ -71,7 +75,16 @@ class LoginViewController: UIViewController {
             loginLabel.text = "Enter a valid password!"
             
         } else {
-            print("Button pressed")
+            
+            loginLabel.font = loginLabel.font.fontWithSize(20)
+            loginLabel.textColor = UIColor.whiteColor()
+            loginLabel.text = "Login to Udacity"
+            
+            email = emailTextField.text
+            password = passwordTextField.text
+            
+            getSessionID()
+            
         }
         
     }
@@ -79,6 +92,63 @@ class LoginViewController: UIViewController {
     
     
     // HELPER FUNCTIONS
+    func getSessionID() {
+        print("Session ID called")
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            func displayError(error: String) {
+                print(error)
+                /*
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.setUIEnabled(true)
+                    self.debugTextLabel.text = "Login Failed!"
+                }
+                */
+            }
+            
+            // GUARD: Was there an error?
+            guard (error == nil) else {
+                displayError("There was an error with your request: \(error)")
+                return
+            }
+            
+            // GUARD: Did we get a successfull 2xx response?
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx: \((response as? NSHTTPURLResponse)?.statusCode))")
+                return
+            }
+            
+            // GUARD: Was the data returned
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            
+            let parsedResult: AnyObject!
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments) as? NSDictionary
+            } catch {
+                print("Could not parse the data with JSON: \(data)")
+                return
+            }
+            print(parsedResult)
+
+        }
+        task.resume()
+        
+    }
+    
+    
+    
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         
         let userInfo = notification.userInfo
