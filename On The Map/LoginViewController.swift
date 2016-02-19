@@ -48,14 +48,28 @@ class LoginViewController: UIViewController {
     // ACTIONS
     @IBAction func loginToUdacity(sender: AnyObject) {
         
-        if emailTextField.text == "" || passwordTextField.text == "" {
+        // Check for data entered in the text fields
+        if (emailTextField.text == "" || !isValidEmail(emailTextField.text!))  && passwordTextField.text == "" {
             loginLabel.font = loginLabel.font.fontWithSize(16)
             loginLabel.textColor = warningColor
             loginLabel.text = "Enter a valid email and password!"
-        } else if !isValidEmail(emailTextField.text!) {
+            
+            emailTextField.backgroundColor = warningColor
+            passwordTextField.backgroundColor = warningColor
+            
+        // Check for a valid email address
+        } else if !isValidEmail(emailTextField.text!) || emailTextField.text == "" {
             loginLabel.font = loginLabel.font.fontWithSize(16)
             loginLabel.textColor = warningColor
             loginLabel.text = "Enter a valid email address!"
+            
+            emailTextField.backgroundColor = warningColor
+            
+        } else if passwordTextField.text == "" {
+            
+            passwordTextField.backgroundColor = warningColor
+            loginLabel.text = "Enter a valid password!"
+            
         } else {
             print("Button pressed")
         }
@@ -99,6 +113,8 @@ class LoginViewController: UIViewController {
         
     }
     
+    // Check for a valid email address
+    // Code from http://stackoverflow.com/questions/25471114/how-to-validate-an-e-mail-address-in-swift
     func isValidEmail(testStr:String) -> Bool {
         // println("validate calendar: \(testStr)")
         let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"

@@ -19,6 +19,12 @@ class LoginTextFieldDelegate: NSObject, UITextFieldDelegate {
         
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        textField.backgroundColor = UIColor.clearColor()
+        
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
