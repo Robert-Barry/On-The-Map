@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		316CBBA91CA45869000316BF /* UdacityResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CBBA81CA45869000316BF /* UdacityResources.swift */; };
 		31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AD47401C76A50A0005B0B2 /* LoginViewController.swift */; };
 		31AD47431C76A6610005B0B2 /* LoginTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AD47421C76A6610005B0B2 /* LoginTextFieldDelegate.swift */; };
 		31FB470D1C75000900B2E27E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FB470C1C75000900B2E27E /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		316CBBA81CA45869000316BF /* UdacityResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityResources.swift; sourceTree = "<group>"; };
 		31AD47401C76A50A0005B0B2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		31AD47421C76A6610005B0B2 /* LoginTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextFieldDelegate.swift; sourceTree = "<group>"; };
 		31FB47091C75000900B2E27E /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 		31FB473B1C75003D00B2E27E /* Udacity */ = {
 			isa = PBXGroup;
 			children = (
+				316CBBA81CA45869000316BF /* UdacityResources.swift */,
 			);
 			name = Udacity;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */,
 				31AD47431C76A6610005B0B2 /* LoginTextFieldDelegate.swift in Sources */,
 				31FB470D1C75000900B2E27E /* AppDelegate.swift in Sources */,
+				316CBBA91CA45869000316BF /* UdacityResources.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

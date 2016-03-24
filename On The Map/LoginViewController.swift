@@ -140,7 +140,6 @@ class LoginViewController: UIViewController {
                 print("Could not parse the data with JSON: \(data)")
                 return
             }
-            print(parsedResult)
             
             guard let sessionDict = parsedResult["session"] as? [String:AnyObject] else {
                 print("Could not parse the data: \(parsedResult)")
@@ -152,7 +151,8 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            print(sessionId)
+            // Save the session ID as a resource
+            UdacityResources.sharedInstance().sessionId = sessionId
 
         }
         task.resume()
