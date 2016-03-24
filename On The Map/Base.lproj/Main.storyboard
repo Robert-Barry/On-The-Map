@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -278,27 +278,27 @@
                                 <exclude reference="guh-EO-uxO"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="hSH-rQ-prp"/>
+                                <exclude reference="xFb-56-eNX"/>
+                                <exclude reference="4uK-31-cMM"/>
+                                <exclude reference="KCE-NL-CXt"/>
+                                <exclude reference="bRj-8L-oEC"/>
+                                <exclude reference="uvx-8l-B6Q"/>
+                                <exclude reference="K7E-2V-mbp"/>
+                                <exclude reference="u0D-ST-ZtC"/>
                                 <exclude reference="1hz-EE-XLS"/>
                                 <exclude reference="I7I-O8-Zn9"/>
                                 <exclude reference="wuu-Ag-rdt"/>
-                                <exclude reference="P5N-if-ari"/>
-                                <exclude reference="jac-cz-zcT"/>
+                                <exclude reference="TtZ-LI-EKf"/>
+                                <exclude reference="gi6-Kx-EUy"/>
                                 <exclude reference="2nV-it-MXw"/>
                                 <exclude reference="fVx-Ll-WTX"/>
                                 <exclude reference="hZB-gE-wuo"/>
                                 <exclude reference="pzR-L8-bL2"/>
                                 <exclude reference="tsH-vB-1pK"/>
                                 <exclude reference="uzN-ew-QVJ"/>
-                                <exclude reference="4uK-31-cMM"/>
-                                <exclude reference="KCE-NL-CXt"/>
-                                <exclude reference="bRj-8L-oEC"/>
-                                <exclude reference="uvx-8l-B6Q"/>
-                                <exclude reference="TtZ-LI-EKf"/>
-                                <exclude reference="gi6-Kx-EUy"/>
-                                <exclude reference="K7E-2V-mbp"/>
-                                <exclude reference="u0D-ST-ZtC"/>
-                                <exclude reference="xFb-56-eNX"/>
+                                <exclude reference="hSH-rQ-prp"/>
+                                <exclude reference="P5N-if-ari"/>
+                                <exclude reference="jac-cz-zcT"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -312,27 +312,27 @@
                                 <include reference="guh-EO-uxO"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="hSH-rQ-prp"/>
+                                <include reference="xFb-56-eNX"/>
+                                <include reference="4uK-31-cMM"/>
+                                <include reference="KCE-NL-CXt"/>
+                                <include reference="bRj-8L-oEC"/>
+                                <include reference="uvx-8l-B6Q"/>
+                                <include reference="K7E-2V-mbp"/>
+                                <include reference="u0D-ST-ZtC"/>
                                 <include reference="1hz-EE-XLS"/>
                                 <include reference="I7I-O8-Zn9"/>
                                 <include reference="wuu-Ag-rdt"/>
-                                <include reference="P5N-if-ari"/>
-                                <include reference="jac-cz-zcT"/>
+                                <include reference="TtZ-LI-EKf"/>
+                                <include reference="gi6-Kx-EUy"/>
                                 <include reference="2nV-it-MXw"/>
                                 <include reference="fVx-Ll-WTX"/>
                                 <include reference="hZB-gE-wuo"/>
                                 <include reference="pzR-L8-bL2"/>
                                 <include reference="tsH-vB-1pK"/>
                                 <include reference="uzN-ew-QVJ"/>
-                                <include reference="4uK-31-cMM"/>
-                                <include reference="KCE-NL-CXt"/>
-                                <include reference="bRj-8L-oEC"/>
-                                <include reference="uvx-8l-B6Q"/>
-                                <include reference="TtZ-LI-EKf"/>
-                                <include reference="gi6-Kx-EUy"/>
-                                <include reference="K7E-2V-mbp"/>
-                                <include reference="u0D-ST-ZtC"/>
-                                <include reference="xFb-56-eNX"/>
+                                <include reference="hSH-rQ-prp"/>
+                                <include reference="P5N-if-ari"/>
+                                <include reference="jac-cz-zcT"/>
                             </mask>
                         </variation>
                     </view>
@@ -340,11 +340,66 @@
                         <outlet property="emailTextField" destination="Qej-39-Wmg" id="eME-ul-9QO"/>
                         <outlet property="loginLabel" destination="qgG-8s-5Nz" id="fOb-mX-Z8t"/>
                         <outlet property="passwordTextField" destination="s3g-Pj-aBc" id="dIx-sA-R2V"/>
+                        <segue destination="XoR-8K-u0g" kind="show" identifier="showMap" id="mCu-LS-a6j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1197" y="463"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="zOc-ET-VNe">
+            <objects>
+                <viewController id="6ZQ-H1-OoJ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zPx-Ce-N35"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qcf-VA-waH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pht-CP-GZB">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="2nr-zI-N4b"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SAT-26-oPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3006" y="793"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="lhx-TU-fpc">
+            <objects>
+                <viewController id="4dd-Pk-6kx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="44Q-2s-lrc"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cm9-zx-FhB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eKm-oW-V3X">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="HsF-C7-jZ0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eOg-6D-LLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3006" y="132"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Ein-AK-tAc">
+            <objects>
+                <tabBarController id="XoR-8K-u0g" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="4VK-hh-vde">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="4dd-Pk-6kx" kind="relationship" relationship="viewControllers" id="AnI-c5-1LH"/>
+                        <segue destination="6ZQ-H1-OoJ" kind="relationship" relationship="viewControllers" id="zGh-Fa-Jgg"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a53-ee-aUq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2076" y="462"/>
         </scene>
     </scenes>
     <resources>

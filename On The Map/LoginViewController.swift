@@ -102,6 +102,7 @@ class LoginViewController: UIViewController {
         request.HTTPBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
 
         let session = NSURLSession.sharedSession()
+        
         let task = session.dataTaskWithRequest(request) { data, response, error in
             
             func displayError(error: String) {
@@ -153,10 +154,19 @@ class LoginViewController: UIViewController {
             
             // Save the session ID as a resource
             UdacityResources.sharedInstance().sessionId = sessionId
+            
+            performUIUpdatesOnMain {
+                self.goToMap()
+            }
 
         }
         task.resume()
         
+    }
+    
+    
+    func goToMap() {
+        performSegueWithIdentifier("showMap", sender: self)
     }
     
     
