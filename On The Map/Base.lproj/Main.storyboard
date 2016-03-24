@@ -366,11 +366,10 @@
             </objects>
             <point key="canvasLocation" x="3882" y="793"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="lhx-TU-fpc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eOg-6D-LLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="4dd-Pk-6kx" sceneMemberID="viewController">
+                <viewController id="4dd-Pk-6kx" customClass="MapViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="44Q-2s-lrc"/>
                         <viewControllerLayoutGuide type="bottom" id="Cm9-zx-FhB"/>
@@ -378,10 +377,47 @@
                     <view key="view" contentMode="scaleToFill" id="eKm-oW-V3X">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HQP-ot-g30">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HQP-ot-g30" firstAttribute="top" secondItem="eKm-oW-V3X" secondAttribute="topMargin" id="Y1Y-B0-llb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HQP-ot-g30" secondAttribute="trailing" constant="-20" id="f1v-61-AIA"/>
+                            <constraint firstItem="HQP-ot-g30" firstAttribute="bottom" secondItem="eKm-oW-V3X" secondAttribute="bottomMargin" id="fRO-gw-IMF"/>
+                            <constraint firstItem="HQP-ot-g30" firstAttribute="leading" secondItem="eKm-oW-V3X" secondAttribute="leadingMargin" constant="-20" id="mLP-nc-sgg"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="HQP-ot-g30"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Y1Y-B0-llb"/>
+                                <exclude reference="f1v-61-AIA"/>
+                                <exclude reference="fRO-gw-IMF"/>
+                                <exclude reference="mLP-nc-sgg"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="HQP-ot-g30"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Y1Y-B0-llb"/>
+                                <include reference="f1v-61-AIA"/>
+                                <include reference="fRO-gw-IMF"/>
+                                <include reference="mLP-nc-sgg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="JCf-yc-cbt"/>
+                    <connections>
+                        <outlet property="mapView" destination="HQP-ot-g30" id="rbT-U9-2Fb"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eOg-6D-LLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3882" y="132"/>
         </scene>
