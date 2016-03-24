@@ -18,6 +18,7 @@
 		31FB47171C75000900B2E27E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31FB47151C75000900B2E27E /* LaunchScreen.storyboard */; };
 		31FB47221C75000900B2E27E /* On_The_MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FB47211C75000900B2E27E /* On_The_MapTests.swift */; };
 		31FB472D1C75000900B2E27E /* On_The_MapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FB472C1C75000900B2E27E /* On_The_MapUITests.swift */; };
+		31FDA0511CA474850047B724 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDA0501CA474850047B724 /* UdacityConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		31FB47281C75000900B2E27E /* On The MapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "On The MapUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31FB472C1C75000900B2E27E /* On_The_MapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = On_The_MapUITests.swift; sourceTree = "<group>"; };
 		31FB472E1C75000900B2E27E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31FDA0501CA474850047B724 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				316CBBA81CA45869000316BF /* UdacityResources.swift */,
+				31FDA0501CA474850047B724 /* UdacityConstants.swift */,
 			);
 			name = Udacity;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */,
+				31FDA0511CA474850047B724 /* UdacityConstants.swift in Sources */,
 				3102F4A21CA46F6800AEEA5F /* MapViewController.swift in Sources */,
 				31AD47431C76A6610005B0B2 /* LoginTextFieldDelegate.swift in Sources */,
 				31FB470D1C75000900B2E27E /* AppDelegate.swift in Sources */,
