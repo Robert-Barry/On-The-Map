@@ -12,6 +12,8 @@ import MapKit
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    
+    var annotations = [MKPointAnnotation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,23 +69,45 @@ class MapViewController: UIViewController {
                 print("Could not parse the data with JSON: \(data)")
                 return
             }
-            print(parsedResult)
-            /*
-            guard let sessionDict = parsedResult["session"] as? [String:AnyObject] else {
+            
+            guard let resultsArray = parsedResult["results"] as? [[String:AnyObject]] else {
                 print("Could not parse the data: \(parsedResult)")
                 return
             }
             
-            guard let sessionId = sessionDict["id"] as? String else {
-                print("Could not parse the data: \(sessionDict)")
-                return
+            for result in resultsArray {
+                
+                let lat = CLLocationDegrees(result["latitude"] as! Double)
+                let long = CLLocationDegrees(result["longitude"] as! Double)
+                
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                let first = result["firstName"] as! String
+                let last = result["lastName"] as! String
+                let mediaURL = result["mediaURL"] as! String
+                
+                // Here we create the annotation and set its coordiate, title, and subtitle properties
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = "\(first) \(last)"
+                annotation.subtitle = mediaURL
+                
+                // Finally we place the annotation in an array of annotations.
+                self.annotations.append(annotation)
+                
+                
+                
             }
             
+            for annotation in self.annotations {
+                print(annotation.title)
+            }
+            /*
             // Save the session ID as a resource
             UdacityResources.sharedInstance().sessionId = sessionId
             
             performUIUpdatesOnMain {
-                self.goToMap()
+                
             }*/
             
         }
