@@ -141,6 +141,18 @@ class LoginViewController: UIViewController {
                 return
             }
             print(parsedResult)
+            
+            guard let sessionDict = parsedResult["session"] as? [String:AnyObject] else {
+                print("Could not parse the data: \(parsedResult)")
+                return
+            }
+            
+            guard let sessionId = sessionDict["id"] as? String else {
+                print("Could not parse the data: \(sessionDict)")
+                return
+            }
+            
+            print(sessionId)
 
         }
         task.resume()
