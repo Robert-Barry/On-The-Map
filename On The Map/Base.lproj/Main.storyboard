@@ -358,7 +358,41 @@
                     <view key="view" contentMode="scaleToFill" id="Pht-CP-GZB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dcu-Eh-hnn">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dcu-Eh-hnn" firstAttribute="leading" secondItem="Pht-CP-GZB" secondAttribute="leadingMargin" constant="-20" id="HDv-uh-WmC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dcu-Eh-hnn" secondAttribute="trailing" constant="-20" id="Rce-Yk-ZTt"/>
+                            <constraint firstItem="dcu-Eh-hnn" firstAttribute="top" secondItem="zPx-Ce-N35" secondAttribute="bottom" id="gmM-BL-x9M"/>
+                            <constraint firstItem="Qcf-VA-waH" firstAttribute="top" secondItem="dcu-Eh-hnn" secondAttribute="bottom" id="qyg-9Z-SjT"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="dcu-Eh-hnn"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="HDv-uh-WmC"/>
+                                <exclude reference="Rce-Yk-ZTt"/>
+                                <exclude reference="gmM-BL-x9M"/>
+                                <exclude reference="qyg-9Z-SjT"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="dcu-Eh-hnn"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="HDv-uh-WmC"/>
+                                <include reference="Rce-Yk-ZTt"/>
+                                <include reference="gmM-BL-x9M"/>
+                                <include reference="qyg-9Z-SjT"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="2nr-zI-N4b"/>
                 </viewController>
@@ -380,6 +414,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HQP-ot-g30">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4dd-Pk-6kx" id="QDh-ZF-OmT"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
