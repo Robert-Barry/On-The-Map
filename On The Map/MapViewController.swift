@@ -95,6 +95,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 // Finally we place the annotation in an array of annotations.
                 self.annotations.append(annotation)
                 
+                let barViewControllers = self.tabBarController?.viewControllers
+                let svc = barViewControllers![1] as! StudentListViewController
+                svc.annotations = self.annotations  //shared model
+                
             }
             
             performUIUpdatesOnMain {
