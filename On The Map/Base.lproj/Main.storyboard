@@ -359,49 +359,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="0.0" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dcu-Eh-hnn">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aDz-dC-5c8">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StudentCell" rowHeight="0.0" id="o9H-Ms-6By">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StudentCell" id="cWP-Qi-Fz0">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o9H-Ms-6By" id="Ozu-ZQ-bmo">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cWP-Qi-Fz0" id="VR8-i2-dcv">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="6ZQ-H1-OoJ" id="kHv-9t-cgI"/>
+                                    <outlet property="dataSource" destination="6ZQ-H1-OoJ" id="6hT-Dc-nzg"/>
+                                    <outlet property="delegate" destination="6ZQ-H1-OoJ" id="q0D-cu-yxf"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dcu-Eh-hnn" firstAttribute="leading" secondItem="Pht-CP-GZB" secondAttribute="leadingMargin" constant="-20" id="HDv-uh-WmC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dcu-Eh-hnn" secondAttribute="trailing" constant="-20" id="Rce-Yk-ZTt"/>
-                            <constraint firstItem="dcu-Eh-hnn" firstAttribute="top" secondItem="zPx-Ce-N35" secondAttribute="bottom" id="gmM-BL-x9M"/>
-                            <constraint firstItem="Qcf-VA-waH" firstAttribute="top" secondItem="dcu-Eh-hnn" secondAttribute="bottom" id="qyg-9Z-SjT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aDz-dC-5c8" secondAttribute="trailing" constant="-20" id="VMn-PZ-5vR"/>
+                            <constraint firstItem="Qcf-VA-waH" firstAttribute="top" secondItem="aDz-dC-5c8" secondAttribute="bottom" id="bDy-gK-lKI"/>
+                            <constraint firstItem="aDz-dC-5c8" firstAttribute="top" secondItem="zPx-Ce-N35" secondAttribute="bottom" id="tV1-6S-ixz"/>
+                            <constraint firstItem="aDz-dC-5c8" firstAttribute="leading" secondItem="Pht-CP-GZB" secondAttribute="leadingMargin" constant="-20" id="xx5-xn-oRp"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="dcu-Eh-hnn"/>
+                                <exclude reference="aDz-dC-5c8"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="HDv-uh-WmC"/>
-                                <exclude reference="Rce-Yk-ZTt"/>
-                                <exclude reference="gmM-BL-x9M"/>
-                                <exclude reference="qyg-9Z-SjT"/>
+                                <exclude reference="VMn-PZ-5vR"/>
+                                <exclude reference="tV1-6S-ixz"/>
+                                <exclude reference="xx5-xn-oRp"/>
+                                <exclude reference="bDy-gK-lKI"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="dcu-Eh-hnn"/>
+                                <include reference="aDz-dC-5c8"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="HDv-uh-WmC"/>
-                                <include reference="Rce-Yk-ZTt"/>
-                                <include reference="gmM-BL-x9M"/>
-                                <include reference="qyg-9Z-SjT"/>
+                                <include reference="VMn-PZ-5vR"/>
+                                <include reference="tV1-6S-ixz"/>
+                                <include reference="xx5-xn-oRp"/>
+                                <include reference="bDy-gK-lKI"/>
                             </mask>
                         </variation>
                     </view>

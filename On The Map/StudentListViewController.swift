@@ -20,9 +20,6 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
-        for annotation in annotations {
-            print(annotations.title)
-        }
     }
     
 
@@ -41,11 +38,22 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("StudentCell")!
+        let annotation = self.annotations[indexPath.row]
+        
+        if var title = annotation.title {
+            cell.textLabel?.text = annotation.title
+        }
+        
+        print(cell.textLabel?.text)
+
+        return cell
     }
-    
+    /*
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         return
     }
+ */
 
 }
