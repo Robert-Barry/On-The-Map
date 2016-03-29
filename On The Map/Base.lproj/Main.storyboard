@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -366,6 +367,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StudentCell" id="cWP-Qi-Fz0">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cWP-Qi-Fz0" id="VR8-i2-dcv">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -388,10 +390,10 @@
                                 <exclude reference="aDz-dC-5c8"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="bDy-gK-lKI"/>
                                 <exclude reference="VMn-PZ-5vR"/>
                                 <exclude reference="tV1-6S-ixz"/>
                                 <exclude reference="xx5-xn-oRp"/>
-                                <exclude reference="bDy-gK-lKI"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -399,10 +401,10 @@
                                 <include reference="aDz-dC-5c8"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="bDy-gK-lKI"/>
                                 <include reference="VMn-PZ-5vR"/>
                                 <include reference="tV1-6S-ixz"/>
                                 <include reference="xx5-xn-oRp"/>
-                                <include reference="bDy-gK-lKI"/>
                             </mask>
                         </variation>
                     </view>
@@ -490,7 +492,13 @@
         <scene sceneID="Ein-AK-tAc">
             <objects>
                 <tabBarController id="XoR-8K-u0g" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="On The Map" id="eJW-Tp-U38"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="eJW-Tp-U38">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="TAJ-Pb-5Qu"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="hUZ-um-FPL"/>
+                            <barButtonItem title="Add Loc" id="crl-bT-Ze9"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="4VK-hh-vde">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
