@@ -95,24 +95,31 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 // Finally we place the annotation in an array of annotations.
                 self.annotations.append(annotation)
                 
-                let barViewControllers = self.tabBarController?.viewControllers
-                let svc = barViewControllers![1] as! StudentListViewController
-                svc.annotations = self.annotations  //shared model
-                
             }
+            
+            // Send student data to the Student List View Controller
+            let tabBarController = self.navigationController?.tabBarController
+            let navController = tabBarController?.viewControllers![1]
+            let svc = navController?.childViewControllers[0] as! StudentListViewController
+            svc.annotations = self.annotations
+           
             
             performUIUpdatesOnMain {
                 // When the array is complete, we add the annotations to the map.
                 self.mapView.addAnnotations(self.annotations)
             }
 
-        
+            print("Student locations recieved")
             
         }
         task.resume()
         
     }
 
+    @IBAction func refreshStudentLocations(sender: AnyObject) {
+        print("Refreshing...")
+        getStudentLocations()
+    }
     // MARK: - MKMapViewDelegate
     
     // Here we create a view with a "right callout accessory view". You might choose to look into other
