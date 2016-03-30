@@ -408,7 +408,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="On The Map" id="IMT-Ay-24b"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="IMT-Ay-24b">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="GGb-QF-8V9">
+                            <connections>
+                                <action selector="refreshStudentData:" destination="6ZQ-H1-OoJ" id="EQp-PM-bIz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAT-26-oPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -481,15 +487,11 @@
         <!--On The Map-->
         <scene sceneID="Ein-AK-tAc">
             <objects>
-                <tabBarController id="XoR-8K-u0g" customClass="TabBarViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="XoR-8K-u0g" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="On The Map" id="eJW-Tp-U38">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="TAJ-Pb-5Qu"/>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="hUZ-um-FPL">
-                                <connections>
-                                    <action selector="reloadStudentData:" destination="XoR-8K-u0g" id="Z1a-hA-ef3"/>
-                                </connections>
-                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="hUZ-um-FPL"/>
                             <barButtonItem title="Add Loc" id="crl-bT-Ze9"/>
                         </rightBarButtonItems>
                     </navigationItem>

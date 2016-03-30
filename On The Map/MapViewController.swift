@@ -101,12 +101,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let tabBarController = self.navigationController?.tabBarController
             let navController = tabBarController?.viewControllers![1]
             let svc = navController?.childViewControllers[0] as! StudentListViewController
-            svc.annotations = self.annotations
-           
             
             performUIUpdatesOnMain {
                 // When the array is complete, we add the annotations to the map.
                 self.mapView.addAnnotations(self.annotations)
+                svc.annotations = self.annotations
             }
 
             print("Student locations recieved")

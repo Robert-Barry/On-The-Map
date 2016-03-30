@@ -32,6 +32,14 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func refreshStudentData(sender: AnyObject) {
+        print("Refresh...")
+        
+        let tabBarController = self.navigationController?.tabBarController
+        let navController = tabBarController?.viewControllers![0]
+        let svc = navController?.childViewControllers[0] as! MapViewController
+        svc.getStudentLocations()
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return annotations.count
@@ -42,11 +50,9 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCellWithIdentifier("StudentCell")!
         let annotation = self.annotations[indexPath.row]
         
-        if var title = annotation.title {
-            cell.textLabel?.text = annotation.title
+        if let title = annotation.title {
+            cell.textLabel?.text = title
         }
-        
-        print(cell.textLabel?.text)
 
         return cell
     }
