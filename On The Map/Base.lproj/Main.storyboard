@@ -409,16 +409,128 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="IMT-Ay-24b">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="GGb-QF-8V9">
-                            <connections>
-                                <action selector="refreshStudentData:" destination="6ZQ-H1-OoJ" id="EQp-PM-bIz"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="GGb-QF-8V9">
+                                <connections>
+                                    <action selector="refreshStudentData:" destination="6ZQ-H1-OoJ" id="EQp-PM-bIz"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Add Loc" id="rN3-fU-hWc">
+                                <connections>
+                                    <action selector="inputLocation:" destination="6ZQ-H1-OoJ" id="uw4-qU-ob0"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAT-26-oPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4326" y="801"/>
+        </scene>
+        <!--Input Location View Controller-->
+        <scene sceneID="nKR-rw-EVp">
+            <objects>
+                <viewController storyboardIdentifier="InputLocationViewController" id="c1y-g9-hF9" customClass="InputLocationViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MMz-Pm-G0d"/>
+                        <viewControllerLayoutGuide type="bottom" id="1NW-Zl-1np"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fjc-5P-EKV">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roh-m5-jNh">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s39-Ue-fCO">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="33"/>
+                                <color key="textColor" red="0.19607843137254902" green="0.37254901960784315" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="studying" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXa-zg-Ugy">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="33"/>
+                                <color key="textColor" red="0.19607843137254902" green="0.37254901960784315" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOY-I3-Gfx">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="33"/>
+                                <color key="textColor" red="0.19607843137254902" green="0.37254901960784315" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ba0-vd-Y3P">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.24705882352941178" green="0.45490196078431372" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ba0-vd-Y3P" secondAttribute="trailing" constant="-20" id="HvW-Td-CNc"/>
+                            <constraint firstItem="roh-m5-jNh" firstAttribute="top" secondItem="MMz-Pm-G0d" secondAttribute="bottom" id="J8L-bH-zun"/>
+                            <constraint firstItem="Ba0-vd-Y3P" firstAttribute="leading" secondItem="fjc-5P-EKV" secondAttribute="leadingMargin" constant="-20" id="MyG-ET-1c7"/>
+                            <constraint firstItem="GOY-I3-Gfx" firstAttribute="centerX" secondItem="fjc-5P-EKV" secondAttribute="centerX" id="YJt-ao-xSh"/>
+                            <constraint firstItem="HXa-zg-Ugy" firstAttribute="top" secondItem="MMz-Pm-G0d" secondAttribute="bottom" constant="68" id="auv-Wq-T7P"/>
+                            <constraint firstItem="s39-Ue-fCO" firstAttribute="centerX" secondItem="fjc-5P-EKV" secondAttribute="centerX" id="bZH-7w-NqM"/>
+                            <constraint firstItem="GOY-I3-Gfx" firstAttribute="top" secondItem="HXa-zg-Ugy" secondAttribute="bottom" id="bks-pW-MFV"/>
+                            <constraint firstItem="s39-Ue-fCO" firstAttribute="top" secondItem="MMz-Pm-G0d" secondAttribute="bottom" constant="30" id="fbd-a2-zbF"/>
+                            <constraint firstItem="roh-m5-jNh" firstAttribute="trailing" secondItem="fjc-5P-EKV" secondAttribute="trailingMargin" id="hVa-zT-IYe"/>
+                            <constraint firstItem="HXa-zg-Ugy" firstAttribute="centerX" secondItem="fjc-5P-EKV" secondAttribute="centerX" id="q6F-Ta-Myj"/>
+                            <constraint firstItem="Ba0-vd-Y3P" firstAttribute="top" secondItem="GOY-I3-Gfx" secondAttribute="bottom" constant="36" id="w30-fx-oUe"/>
+                            <constraint firstItem="1NW-Zl-1np" firstAttribute="top" secondItem="Ba0-vd-Y3P" secondAttribute="bottom" constant="121" id="zZ6-U0-0Ql"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="roh-m5-jNh"/>
+                                <exclude reference="s39-Ue-fCO"/>
+                                <exclude reference="HXa-zg-Ugy"/>
+                                <exclude reference="GOY-I3-Gfx"/>
+                                <exclude reference="Ba0-vd-Y3P"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="bZH-7w-NqM"/>
+                                <exclude reference="fbd-a2-zbF"/>
+                                <exclude reference="auv-Wq-T7P"/>
+                                <exclude reference="q6F-Ta-Myj"/>
+                                <exclude reference="YJt-ao-xSh"/>
+                                <exclude reference="bks-pW-MFV"/>
+                                <exclude reference="HvW-Td-CNc"/>
+                                <exclude reference="MyG-ET-1c7"/>
+                                <exclude reference="w30-fx-oUe"/>
+                                <exclude reference="J8L-bH-zun"/>
+                                <exclude reference="hVa-zT-IYe"/>
+                                <exclude reference="zZ6-U0-0Ql"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="roh-m5-jNh"/>
+                                <include reference="s39-Ue-fCO"/>
+                                <include reference="HXa-zg-Ugy"/>
+                                <include reference="GOY-I3-Gfx"/>
+                                <include reference="Ba0-vd-Y3P"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="bZH-7w-NqM"/>
+                                <include reference="fbd-a2-zbF"/>
+                                <include reference="auv-Wq-T7P"/>
+                                <include reference="q6F-Ta-Myj"/>
+                                <include reference="YJt-ao-xSh"/>
+                                <include reference="bks-pW-MFV"/>
+                                <include reference="HvW-Td-CNc"/>
+                                <include reference="MyG-ET-1c7"/>
+                                <include reference="w30-fx-oUe"/>
+                                <include reference="J8L-bH-zun"/>
+                                <include reference="hVa-zT-IYe"/>
+                                <include reference="zZ6-U0-0Ql"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qhg-hu-LaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5202" y="463"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="lhx-TU-fpc">
@@ -470,11 +582,18 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="40H-S9-kBa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="4XM-ht-fIC">
-                            <connections>
-                                <action selector="refreshStudentLocations:" destination="4dd-Pk-6kx" id="enf-yB-pnf"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="4XM-ht-fIC">
+                                <connections>
+                                    <action selector="refreshStudentLocations:" destination="4dd-Pk-6kx" id="enf-yB-pnf"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Add Loc" id="kqp-Xt-tNx">
+                                <connections>
+                                    <action selector="inputLocation:" destination="4dd-Pk-6kx" id="gwT-Wu-QIR"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="HQP-ot-g30" id="rbT-U9-2Fb"/>
