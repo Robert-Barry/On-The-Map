@@ -603,55 +603,79 @@
                     <view key="view" contentMode="scaleToFill" id="4uo-8O-IX6">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70l-rD-N04">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.24705882352941178" green="0.45490196078431372" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="f7u-Rx-49U">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9eB-KY-gsk">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" textAlignment="center" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="J76-zb-8E7">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="47" width="360" height="126"/>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8YB-P5-y0k">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Submit"/>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.2470588235" green="0.4549019608" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="acx-Tx-Dae" firstAttribute="top" secondItem="8YB-P5-y0k" secondAttribute="bottom" constant="51" id="5fr-4Q-TPS"/>
                             <constraint firstItem="f7u-Rx-49U" firstAttribute="leading" secondItem="4uo-8O-IX6" secondAttribute="leadingMargin" constant="-20" id="5kK-8c-ubd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f7u-Rx-49U" secondAttribute="trailing" constant="-20" id="8Hz-S4-sfs"/>
-                            <constraint firstItem="70l-rD-N04" firstAttribute="top" secondItem="4uo-8O-IX6" secondAttribute="topMargin" id="IS5-Jn-xRG"/>
+                            <constraint firstItem="9eB-KY-gsk" firstAttribute="top" secondItem="6TQ-RN-9ma" secondAttribute="bottom" id="DYC-Lq-Tkc"/>
+                            <constraint firstItem="f7u-Rx-49U" firstAttribute="top" secondItem="6TQ-RN-9ma" secondAttribute="bottom" constant="161" id="GUO-kS-psQ"/>
                             <constraint firstItem="acx-Tx-Dae" firstAttribute="top" secondItem="f7u-Rx-49U" secondAttribute="bottom" id="If1-so-EZj"/>
-                            <constraint firstItem="f7u-Rx-49U" firstAttribute="top" secondItem="70l-rD-N04" secondAttribute="bottom" id="OT9-qc-wjg"/>
-                            <constraint firstItem="70l-rD-N04" firstAttribute="leading" secondItem="4uo-8O-IX6" secondAttribute="leadingMargin" constant="-20" id="Sf0-4n-JGi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="70l-rD-N04" secondAttribute="trailing" constant="-20" id="wAO-NG-Pxg"/>
-                            <constraint firstItem="acx-Tx-Dae" firstAttribute="top" secondItem="70l-rD-N04" secondAttribute="bottom" constant="419" id="zxz-Ys-JMX"/>
+                            <constraint firstItem="9eB-KY-gsk" firstAttribute="trailing" secondItem="4uo-8O-IX6" secondAttribute="trailingMargin" id="QXj-7A-5hC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8YB-P5-y0k" secondAttribute="trailing" constant="126" id="VTC-lX-TJH"/>
+                            <constraint firstItem="8YB-P5-y0k" firstAttribute="leading" secondItem="4uo-8O-IX6" secondAttribute="leadingMargin" constant="126" id="dDd-1l-fgi"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="70l-rD-N04"/>
                                 <exclude reference="f7u-Rx-49U"/>
+                                <exclude reference="9eB-KY-gsk"/>
+                                <exclude reference="J76-zb-8E7"/>
+                                <exclude reference="8YB-P5-y0k"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="IS5-Jn-xRG"/>
-                                <exclude reference="Sf0-4n-JGi"/>
-                                <exclude reference="wAO-NG-Pxg"/>
                                 <exclude reference="5kK-8c-ubd"/>
                                 <exclude reference="8Hz-S4-sfs"/>
-                                <exclude reference="OT9-qc-wjg"/>
+                                <exclude reference="GUO-kS-psQ"/>
+                                <exclude reference="DYC-Lq-Tkc"/>
+                                <exclude reference="QXj-7A-5hC"/>
+                                <exclude reference="VTC-lX-TJH"/>
+                                <exclude reference="dDd-1l-fgi"/>
+                                <exclude reference="5fr-4Q-TPS"/>
                                 <exclude reference="If1-so-EZj"/>
-                                <exclude reference="zxz-Ys-JMX"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="70l-rD-N04"/>
                                 <include reference="f7u-Rx-49U"/>
+                                <include reference="9eB-KY-gsk"/>
+                                <include reference="J76-zb-8E7"/>
+                                <include reference="8YB-P5-y0k"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="IS5-Jn-xRG"/>
-                                <include reference="Sf0-4n-JGi"/>
-                                <include reference="wAO-NG-Pxg"/>
                                 <include reference="5kK-8c-ubd"/>
                                 <include reference="8Hz-S4-sfs"/>
-                                <include reference="OT9-qc-wjg"/>
+                                <include reference="GUO-kS-psQ"/>
+                                <include reference="DYC-Lq-Tkc"/>
+                                <include reference="QXj-7A-5hC"/>
+                                <include reference="VTC-lX-TJH"/>
+                                <include reference="dDd-1l-fgi"/>
+                                <include reference="5fr-4Q-TPS"/>
                                 <include reference="If1-so-EZj"/>
-                                <include reference="zxz-Ys-JMX"/>
                             </mask>
                         </variation>
                     </view>

@@ -14,6 +14,7 @@ class UdacityResources {
     // Session ID retrieved from Udacity
     var sessionId: String? = nil
     
+    
     // Create a singleton
     class func sharedInstance() -> UdacityResources {
         struct Singleton {

@@ -11,6 +11,7 @@
 		311A01801CA5B4F5002AF5A8 /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A017F1CA5B4F5002AF5A8 /* StudentListViewController.swift */; };
 		312107451CAD61B000A949BF /* InputLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312107441CAD61B000A949BF /* InputLocationViewController.swift */; };
 		312107471CAD75A200A949BF /* InputURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312107461CAD75A200A949BF /* InputURLViewController.swift */; };
+		312107491CADA63C00A949BF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312107481CADA63C00A949BF /* Student.swift */; };
 		316CBBA91CA45869000316BF /* UdacityResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CBBA81CA45869000316BF /* UdacityResources.swift */; };
 		316CBBAB1CA45B5A000316BF /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CBBAA1CA45B5A000316BF /* GCDBlackBox.swift */; };
 		31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AD47401C76A50A0005B0B2 /* LoginViewController.swift */; };
@@ -46,6 +47,7 @@
 		311A017F1CA5B4F5002AF5A8 /* StudentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
 		312107441CAD61B000A949BF /* InputLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputLocationViewController.swift; sourceTree = "<group>"; };
 		312107461CAD75A200A949BF /* InputURLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputURLViewController.swift; sourceTree = "<group>"; };
+		312107481CADA63C00A949BF /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		316CBBA81CA45869000316BF /* UdacityResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityResources.swift; sourceTree = "<group>"; };
 		316CBBAA1CA45B5A000316BF /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		31AD47401C76A50A0005B0B2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				316CBBA81CA45869000316BF /* UdacityResources.swift */,
 				31FDA0501CA474850047B724 /* UdacityConstants.swift */,
+				312107481CADA63C00A949BF /* Student.swift */,
 			);
 			name = Udacity;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */,
 				312107471CAD75A200A949BF /* InputURLViewController.swift in Sources */,
 				31FDA0511CA474850047B724 /* UdacityConstants.swift in Sources */,
+				312107491CADA63C00A949BF /* Student.swift in Sources */,
 				3102F4A21CA46F6800AEEA5F /* MapViewController.swift in Sources */,
 				31AD47431C76A6610005B0B2 /* LoginTextFieldDelegate.swift in Sources */,
 				312107451CAD61B000A949BF /* InputLocationViewController.swift in Sources */,
