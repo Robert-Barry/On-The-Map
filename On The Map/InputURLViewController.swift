@@ -1,5 +1,5 @@
 //
-//  InputLocationViewController.swift
+//  InputURLViewController.swift
 //  On The Map
 //
 //  Created by Robert Barry on 3/31/16.
@@ -8,19 +8,20 @@
 
 import UIKit
 
-class InputLocationViewController: UIViewController {
+class InputURLViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("lodaded")
+        print("input url")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
     /*
     // MARK: - Navigation
