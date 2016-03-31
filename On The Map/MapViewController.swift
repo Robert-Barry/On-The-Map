@@ -133,7 +133,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.pinTintColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
+            pinView!.pinTintColor = UIColor(red: 0.9, green: 0.2, blue: 0.2, alpha: 1.0)
             pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         }
         else {
@@ -147,6 +147,46 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let inputLocationController = storyboard?.instantiateViewControllerWithIdentifier("InputLocationViewController")
         presentViewController(inputLocationController!, animated: true, completion: nil)
     }
+    
+    @IBAction func logout(sender: AnyObject) {
+        print("Logging out")
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+        request.HTTPMethod = "DELETE"
+        var xsrfCookie: NSHTTPCookie? = nil
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let session = NSURLSession.sharedSession()
+        print("Session")
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            if error != nil { // Handle error…
+                return
+            }
+            
+            guard let oldData = data else {
+                print("Problem with the data")
+                return
+            }
+            let newData = oldData.subdataWithRange(NSMakeRange(5, oldData.length - 5)) /* subset response data! */
+            
+            print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+            
+            performUIUpdatesOnMain {
+                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            }
+            
+        }
+        task.resume()
+        
+    }
+    
     // This delegate method is implemented to respond to taps. It opens the system browser
     // to the URL specified in the annotationViews subtitle property.
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {

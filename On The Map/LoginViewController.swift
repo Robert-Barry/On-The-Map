@@ -45,6 +45,9 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         
         subscribeToKeyboardNotifications()
+        
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     

@@ -409,7 +409,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="IMT-Ay-24b">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="MS7-jm-mPr"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="MS7-jm-mPr">
+                            <connections>
+                                <action selector="logout:" destination="6ZQ-H1-OoJ" id="mrr-c3-b7I"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="refresh" id="GGb-QF-8V9">
                                 <connections>
@@ -737,7 +741,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="40H-S9-kBa">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="rlg-gc-tVw"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="rlg-gc-tVw">
+                            <connections>
+                                <action selector="logout:" destination="4dd-Pk-6kx" id="A10-HL-Gwx"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="refresh" id="4XM-ht-fIC">
                                 <connections>

@@ -41,6 +41,20 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
         svc.getStudentLocations()
     }
     
+    @IBAction func inputLocation(sender: AnyObject) {
+        let inputLocationController = storyboard?.instantiateViewControllerWithIdentifier("InputLocationViewController")
+        presentViewController(inputLocationController!, animated: true, completion: nil)
+    }
+    
+    @IBAction func logout(sender: AnyObject) {
+        let tabBarController = self.navigationController?.tabBarController
+        let navController = tabBarController?.viewControllers![0]
+        let svc = navController?.childViewControllers[0] as! MapViewController
+        svc.logout(sender)
+        
+    }
+ 
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return annotations.count
     }
@@ -53,16 +67,9 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
         if let title = annotation.title {
             cell.textLabel?.text = title
         }
-
+        
         return cell
     }
-    
-    @IBAction func inputLocation(sender: AnyObject) {
-        let inputLocationController = storyboard?.instantiateViewControllerWithIdentifier("InputLocationViewController")
-        presentViewController(inputLocationController!, animated: true, completion: nil)
-    }
-    
-    
     /*
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         return
