@@ -409,6 +409,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="IMT-Ay-24b">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="MS7-jm-mPr"/>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="refresh" id="GGb-QF-8V9">
                                 <connections>
@@ -440,7 +441,9 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roh-m5-jNh">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Cancel"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.15294117647058825" green="0.29019607843137257" blue="0.51764705882352946" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ba0-vd-Y3P">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -734,6 +737,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="40H-S9-kBa">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="rlg-gc-tVw"/>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="refresh" id="4XM-ht-fIC">
                                 <connections>
