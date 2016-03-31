@@ -13,7 +13,7 @@ class UdacityResources {
     
     // Session ID retrieved from Udacity
     var sessionId: String? = nil
-    
+    var udacityId: String? = nil
     
     // Create a singleton
     class func sharedInstance() -> UdacityResources {

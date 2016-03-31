@@ -142,6 +142,16 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            guard let accountDict = parsedResult["account"] as? [String:AnyObject] else {
+                print("Could not parse the data: \(parsedResult)")
+                return
+            }
+            
+            guard let udacityId = accountDict["key"] as? String else {
+                print("Could not parse the data: \(accountDict)")
+                return
+            }
+            
             guard let sessionDict = parsedResult["session"] as? [String:AnyObject] else {
                 print("Could not parse the data: \(parsedResult)")
                 return
@@ -154,6 +164,7 @@ class LoginViewController: UIViewController {
             
             // Save the session ID as a resource
             UdacityResources.sharedInstance().sessionId = sessionId
+            UdacityResources.sharedInstance().udacityId = udacityId
             
             performUIUpdatesOnMain {
                 self.goToMap()
