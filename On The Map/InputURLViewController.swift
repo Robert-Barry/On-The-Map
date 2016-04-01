@@ -9,6 +9,8 @@
 import UIKit
 
 class InputURLViewController: UIViewController {
+    
+    var location: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,10 @@ class InputURLViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        print(location)
     }
     
     @IBAction func cancel(sender: AnyObject) {
