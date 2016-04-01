@@ -22,6 +22,9 @@ class InputURLViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func cancel(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

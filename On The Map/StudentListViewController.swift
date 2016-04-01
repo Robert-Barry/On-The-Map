@@ -67,14 +67,23 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
         if let title = annotation.title {
             cell.textLabel?.text = title
         }
+        
+        if let subtitle = annotation.subtitle {
+            if let detailTextLabel = cell.detailTextLabel {
+                detailTextLabel.text = "\(subtitle)"
+            }
+        }
+        
         cell.imageView?.image = UIImage(named: "mapNav")
         
         return cell
     }
-    /*
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        return
+        if let toOpen = annotations[indexPath.row].subtitle {
+            UIApplication.sharedApplication().openURL(NSURL(string: toOpen)!)
+        }
     }
- */
 
 }
