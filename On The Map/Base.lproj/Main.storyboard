@@ -382,7 +382,7 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="aDz-dC-5c8" secondAttribute="trailing" constant="-20" id="VMn-PZ-5vR"/>
                             <constraint firstItem="Qcf-VA-waH" firstAttribute="top" secondItem="aDz-dC-5c8" secondAttribute="bottom" id="bDy-gK-lKI"/>
-                            <constraint firstItem="aDz-dC-5c8" firstAttribute="top" secondItem="zPx-Ce-N35" secondAttribute="bottom" id="tV1-6S-ixz"/>
+                            <constraint firstItem="aDz-dC-5c8" firstAttribute="top" secondItem="Pht-CP-GZB" secondAttribute="topMargin" id="l2Z-uJ-gpg"/>
                             <constraint firstItem="aDz-dC-5c8" firstAttribute="leading" secondItem="Pht-CP-GZB" secondAttribute="leadingMargin" constant="-20" id="xx5-xn-oRp"/>
                         </constraints>
                         <variation key="default">
@@ -392,7 +392,7 @@
                             <mask key="constraints">
                                 <exclude reference="bDy-gK-lKI"/>
                                 <exclude reference="VMn-PZ-5vR"/>
-                                <exclude reference="tV1-6S-ixz"/>
+                                <exclude reference="l2Z-uJ-gpg"/>
                                 <exclude reference="xx5-xn-oRp"/>
                             </mask>
                         </variation>
@@ -403,7 +403,7 @@
                             <mask key="constraints">
                                 <include reference="bDy-gK-lKI"/>
                                 <include reference="VMn-PZ-5vR"/>
-                                <include reference="tV1-6S-ixz"/>
+                                <include reference="l2Z-uJ-gpg"/>
                                 <include reference="xx5-xn-oRp"/>
                             </mask>
                         </variation>
@@ -420,7 +420,7 @@
                                     <action selector="refreshStudentData:" destination="6ZQ-H1-OoJ" id="EQp-PM-bIz"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Add Loc" id="rN3-fU-hWc">
+                            <barButtonItem image="mapNav" id="rN3-fU-hWc">
                                 <connections>
                                     <action selector="inputLocation:" destination="6ZQ-H1-OoJ" id="uw4-qU-ob0"/>
                                 </connections>
@@ -441,6 +441,7 @@
                         <viewControllerLayoutGuide type="bottom" id="1NW-Zl-1np"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fjc-5P-EKV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roh-m5-jNh">
@@ -547,22 +548,22 @@
                                 <exclude reference="AMm-7l-AcU"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="bZH-7w-NqM"/>
-                                <exclude reference="fbd-a2-zbF"/>
-                                <exclude reference="auv-Wq-T7P"/>
-                                <exclude reference="q6F-Ta-Myj"/>
-                                <exclude reference="YJt-ao-xSh"/>
-                                <exclude reference="bks-pW-MFV"/>
-                                <exclude reference="HvW-Td-CNc"/>
-                                <exclude reference="MyG-ET-1c7"/>
-                                <exclude reference="w30-fx-oUe"/>
-                                <exclude reference="J8L-bH-zun"/>
-                                <exclude reference="hVa-zT-IYe"/>
+                                <exclude reference="I0r-vc-2Va"/>
+                                <exclude reference="zZ6-U0-0Ql"/>
                                 <exclude reference="kRk-Ux-nN8"/>
                                 <exclude reference="ooS-Pi-YKW"/>
                                 <exclude reference="tGj-VL-qLg"/>
-                                <exclude reference="I0r-vc-2Va"/>
-                                <exclude reference="zZ6-U0-0Ql"/>
+                                <exclude reference="J8L-bH-zun"/>
+                                <exclude reference="hVa-zT-IYe"/>
+                                <exclude reference="YJt-ao-xSh"/>
+                                <exclude reference="bks-pW-MFV"/>
+                                <exclude reference="auv-Wq-T7P"/>
+                                <exclude reference="q6F-Ta-Myj"/>
+                                <exclude reference="bZH-7w-NqM"/>
+                                <exclude reference="fbd-a2-zbF"/>
+                                <exclude reference="HvW-Td-CNc"/>
+                                <exclude reference="MyG-ET-1c7"/>
+                                <exclude reference="w30-fx-oUe"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -575,22 +576,22 @@
                                 <include reference="AMm-7l-AcU"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="bZH-7w-NqM"/>
-                                <include reference="fbd-a2-zbF"/>
-                                <include reference="auv-Wq-T7P"/>
-                                <include reference="q6F-Ta-Myj"/>
-                                <include reference="YJt-ao-xSh"/>
-                                <include reference="bks-pW-MFV"/>
-                                <include reference="HvW-Td-CNc"/>
-                                <include reference="MyG-ET-1c7"/>
-                                <include reference="w30-fx-oUe"/>
-                                <include reference="J8L-bH-zun"/>
-                                <include reference="hVa-zT-IYe"/>
+                                <include reference="I0r-vc-2Va"/>
+                                <include reference="zZ6-U0-0Ql"/>
                                 <include reference="kRk-Ux-nN8"/>
                                 <include reference="ooS-Pi-YKW"/>
                                 <include reference="tGj-VL-qLg"/>
-                                <include reference="I0r-vc-2Va"/>
-                                <include reference="zZ6-U0-0Ql"/>
+                                <include reference="J8L-bH-zun"/>
+                                <include reference="hVa-zT-IYe"/>
+                                <include reference="YJt-ao-xSh"/>
+                                <include reference="bks-pW-MFV"/>
+                                <include reference="auv-Wq-T7P"/>
+                                <include reference="q6F-Ta-Myj"/>
+                                <include reference="bZH-7w-NqM"/>
+                                <include reference="fbd-a2-zbF"/>
+                                <include reference="HvW-Td-CNc"/>
+                                <include reference="MyG-ET-1c7"/>
+                                <include reference="w30-fx-oUe"/>
                             </mask>
                         </variation>
                     </view>
@@ -608,6 +609,7 @@
                         <viewControllerLayoutGuide type="bottom" id="acx-Tx-Dae"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4uo-8O-IX6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="f7u-Rx-49U">
@@ -655,15 +657,15 @@
                                 <exclude reference="8YB-P5-y0k"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="5fr-4Q-TPS"/>
+                                <exclude reference="If1-so-EZj"/>
+                                <exclude reference="VTC-lX-TJH"/>
+                                <exclude reference="dDd-1l-fgi"/>
+                                <exclude reference="DYC-Lq-Tkc"/>
+                                <exclude reference="QXj-7A-5hC"/>
                                 <exclude reference="5kK-8c-ubd"/>
                                 <exclude reference="8Hz-S4-sfs"/>
                                 <exclude reference="GUO-kS-psQ"/>
-                                <exclude reference="DYC-Lq-Tkc"/>
-                                <exclude reference="QXj-7A-5hC"/>
-                                <exclude reference="VTC-lX-TJH"/>
-                                <exclude reference="dDd-1l-fgi"/>
-                                <exclude reference="5fr-4Q-TPS"/>
-                                <exclude reference="If1-so-EZj"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -674,15 +676,15 @@
                                 <include reference="8YB-P5-y0k"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="5fr-4Q-TPS"/>
+                                <include reference="If1-so-EZj"/>
+                                <include reference="VTC-lX-TJH"/>
+                                <include reference="dDd-1l-fgi"/>
+                                <include reference="DYC-Lq-Tkc"/>
+                                <include reference="QXj-7A-5hC"/>
                                 <include reference="5kK-8c-ubd"/>
                                 <include reference="8Hz-S4-sfs"/>
                                 <include reference="GUO-kS-psQ"/>
-                                <include reference="DYC-Lq-Tkc"/>
-                                <include reference="QXj-7A-5hC"/>
-                                <include reference="VTC-lX-TJH"/>
-                                <include reference="dDd-1l-fgi"/>
-                                <include reference="5fr-4Q-TPS"/>
-                                <include reference="If1-so-EZj"/>
                             </mask>
                         </variation>
                     </view>
@@ -752,7 +754,7 @@
                                     <action selector="refreshStudentLocations:" destination="4dd-Pk-6kx" id="enf-yB-pnf"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Add Loc" id="kqp-Xt-tNx">
+                            <barButtonItem image="mapNav" id="kqp-Xt-tNx">
                                 <connections>
                                     <action selector="inputLocation:" destination="4dd-Pk-6kx" id="gwT-Wu-QIR"/>
                                 </connections>
@@ -792,11 +794,11 @@
             </objects>
             <point key="canvasLocation" x="2385" y="471"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Map-->
         <scene sceneID="LHZ-qt-S6X">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="g6y-Ab-er7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="JCf-yc-cbt"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map Tab" id="JCf-yc-cbt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="37P-7g-2bu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -811,11 +813,11 @@
             </objects>
             <point key="canvasLocation" x="3408" y="140"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--list-->
         <scene sceneID="r3F-It-FEk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eVy-g7-5qJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="2nr-zI-N4b"/>
+                    <tabBarItem key="tabBarItem" title="list" image="list tab" id="2nr-zI-N4b"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jWX-pH-scZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -832,8 +834,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Map Tab" width="25" height="25"/>
         <image name="Udacity logo" width="250" height="250"/>
         <image name="facebook login" width="360" height="45"/>
+        <image name="list tab" width="25" height="25"/>
         <image name="login button" width="360" height="45"/>
+        <image name="mapNav" width="22" height="22"/>
     </resources>
 </document>

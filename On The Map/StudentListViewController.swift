@@ -67,6 +67,7 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
         if let title = annotation.title {
             cell.textLabel?.text = title
         }
+        cell.imageView?.image = UIImage(named: "mapNav")
         
         return cell
     }
