@@ -22,7 +22,6 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
         self.mapView.delegate = self
         
         print("input url")
-        print(studentData?.toString())
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -42,24 +41,69 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
     @IBAction func submit(sender: AnyObject) {
         
         studentData?.mediaURL = urlTextField.text
-        studentData?.toString()
         
         var urlString: String!
         var url: NSURL!
         
         // UPLOAD DATA HERE!!
-        if UdacityResources.sharedInstance().method == "POST" {
+        if UdacityResources.sharedInstance().method! == "POST" {
             urlString = "https://api.parse.com/1/classes/StudentLocation"
-            url = NSURL(string: urlString)
         } else {
             guard let objectId = UdacityResources.sharedInstance().objectId else {
                 print("Problem with the object ID")
                 return
             }
-            
             urlString = "https://api.parse.com/1/classes/StudentLocation/\(objectId)"
-            url = NSURL(string: urlString)
         }
+        
+        url = NSURL(string: urlString)
+        
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = UdacityResources.sharedInstance().method!
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let key = studentData?.uniqueKey else {
+            print("Error with unique key")
+            return
+        }
+        
+        guard let firstName = studentData?.firstName else {
+            print("Error with first name")
+            return
+        }
+        
+        guard let lastName = studentData?.lastName else {
+            print("Error with last name")
+            return
+        }
+        
+        guard let mapString = studentData?.mapString else {
+            print("Error with map string")
+            return
+        }
+        
+        guard let mediaUrl = studentData?.mediaURL else {
+            print("Error with media URL")
+            return
+        }
+        
+        guard let latitude = studentData?.latitude else {
+            print("Error with latitude")
+            return
+        }
+        
+        guard let longitude = studentData?.longitude else {
+            print("Error with longitude")
+            return
+        }
+        
+        
+        print("{\"uniqueKey\": \"\(key)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaUrl)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}")
+        
+        //request.HTTPBody = "{\"uniqueKey\": \"\(key)\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.322998, \"longitude\": -122.032182}".dataUsingEncoding(NSUTF8StringEncoding)
+        //let session = NSURLSession.sharedSession()
         
         let mapViewController = storyboard?.instantiateViewControllerWithIdentifier("TabBarController")
         presentViewController(mapViewController!, animated: true, completion: nil)
