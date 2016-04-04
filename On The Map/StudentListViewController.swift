@@ -11,8 +11,10 @@ import MapKit
 
 class StudentListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // Variables
     var annotations = [MKPointAnnotation]()
 
+    // OVERRIDES
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,15 +25,7 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    // ACTIONS
     @IBAction func refreshStudentData(sender: AnyObject) {
         print("Refresh...")
         
@@ -55,6 +49,7 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
  
     
+    // TABLE VIEW DATA SOURCE
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return annotations.count
     }
@@ -80,6 +75,7 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     
+    // TABLE VIEW DELEGATE
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let toOpen = annotations[indexPath.row].subtitle {
             UIApplication.sharedApplication().openURL(NSURL(string: toOpen)!)

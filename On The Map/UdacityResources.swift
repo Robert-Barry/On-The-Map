@@ -14,6 +14,10 @@ class UdacityResources {
     // Session ID retrieved from Udacity
     var sessionId: String? = nil
     var udacityId: String? = nil
+    var firstName: String? = nil
+    var lastName: String? = nil
+    var method: String? = "POST"
+    var objectId: String? = nil
     
     // Create a singleton
     class func sharedInstance() -> UdacityResources {

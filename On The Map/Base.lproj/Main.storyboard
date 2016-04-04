@@ -540,7 +540,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Find On The Map"/>
                                 <connections>
-                                    <segue destination="HRp-fk-Fru" kind="show" id="1bL-fw-2xC"/>
+                                    <action selector="findOnTheMap:" destination="c1y-g9-hF9" eventType="touchUpInside" id="1AM-B5-Cku"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -631,7 +631,7 @@
         <!--Input URL View Controller-->
         <scene sceneID="1sn-Wh-xNv">
             <objects>
-                <viewController id="HRp-fk-Fru" customClass="InputURLViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InputURLViewController" id="HRp-fk-Fru" customClass="InputURLViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6TQ-RN-9ma"/>
                         <viewControllerLayoutGuide type="bottom" id="acx-Tx-Dae"/>
@@ -666,6 +666,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submit:" destination="HRp-fk-Fru" eventType="touchUpInside" id="lOL-ju-kBv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2470588235" green="0.4549019608" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -719,6 +722,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="f7u-Rx-49U" id="f5A-uc-BGW"/>
+                        <outlet property="urlTextField" destination="J76-zb-8E7" id="R4c-q0-LQU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kb3-LQ-Ywp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -803,7 +810,7 @@
         <!--On The Map-->
         <scene sceneID="Ein-AK-tAc">
             <objects>
-                <tabBarController id="XoR-8K-u0g" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="XoR-8K-u0g" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="On The Map" id="eJW-Tp-U38">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="TAJ-Pb-5Qu"/>
                         <rightBarButtonItems>

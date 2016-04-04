@@ -11,10 +11,14 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
+    
+    // OUTLETS
     @IBOutlet weak var mapView: MKMapView!
     
+    // VARIABLES
     var annotations = [MKPointAnnotation]()
 
+    // OVERRIDES
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,7 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
 
-    
+    // Download student locations for display on the map
     func getStudentLocations() {
         print("Student Locations called")
         
@@ -62,6 +66,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 return
             }
             
+            // Parse the data
             let parsedResult: AnyObject!
             do {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? NSDictionary
@@ -70,29 +75,34 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 return
             }
             
+            // GUARD: Get the results and save as an array of dictionaries
             guard let resultsArray = parsedResult["results"] as? [[String:AnyObject]] else {
                 print("Could not parse the data: \(parsedResult)")
                 return
             }
             
+            // Loop through each dictionary in the student array
             for result in resultsArray {
                 
+                // Get the latitude and longitude for each student
                 let lat = CLLocationDegrees(result["latitude"] as! Double)
                 let long = CLLocationDegrees(result["longitude"] as! Double)
                 
+                // Create a coordinate for each student
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
                 
+                // Get the data needed for each student
                 let first = result["firstName"] as! String
                 let last = result["lastName"] as! String
                 let mediaURL = result["mediaURL"] as! String
                 
-                // Here we create the annotation and set its coordiate, title, and subtitle properties
+                // Create the annotation and set its coordiate, title, and subtitle properties
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = coordinate
                 annotation.title = "\(first) \(last)"
                 annotation.subtitle = mediaURL
                 
-                // Finally we place the annotation in an array of annotations.
+                // Place the annotation in an array of annotations.
                 self.annotations.append(annotation)
                 
             }
@@ -103,7 +113,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let svc = navController?.childViewControllers[0] as! StudentListViewController
             
             performUIUpdatesOnMain {
-                // When the array is complete, we add the annotations to the map.
+                // When the array is complete, add the annotations to the map.
                 self.mapView.addAnnotations(self.annotations)
                 svc.annotations = self.annotations
             }
@@ -115,13 +125,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
     }
 
+    
+    // ACTIONS
     @IBAction func refreshStudentLocations(sender: AnyObject) {
         print("Refreshing...")
         getStudentLocations()
     }
+    
+    
     // MARK: - MKMapViewDelegate
     
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
+    // Create a view with a "right callout accessory view". You might choose to look into other
     // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
     // method in TableViewDataSource.
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -144,8 +158,86 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func inputLocation(sender: AnyObject) {
-        let inputLocationController = storyboard?.instantiateViewControllerWithIdentifier("InputLocationViewController")
-        presentViewController(inputLocationController!, animated: true, completion: nil)
+        
+        guard let uniqueKey = UdacityResources.sharedInstance().udacityId else {
+            print("Error receiveing the key")
+            return
+        }
+        
+        let urlString = "https://api.parse.com/1/classes/StudentLocation?where=%7B%22uniqueKey%22%3A%22\(uniqueKey)%22%7D"
+        let url = NSURL(string: urlString)
+        
+        print(urlString)
+        let request = NSMutableURLRequest(URL: url!)
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            func displayError(error: String) {
+                print(error)
+                /*
+                 dispatch_async(dispatch_get_main_queue()) {
+                 self.setUIEnabled(true)
+                 self.debugTextLabel.text = "Login Failed!"
+                 }
+                 */
+            }
+            
+            // GUARD: Was there an error?
+            guard (error == nil) else {
+                displayError("There was an error with your request: \(error)")
+                return
+            }
+            
+            // GUARD: Did we get a successfull 2xx response?
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx: \((response as? NSHTTPURLResponse)?.statusCode))")
+                return
+            }
+            
+            // GUARD: Was the data returned
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            
+            // Parse the data
+            let parsedResult: AnyObject!
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? NSDictionary
+            } catch {
+                print("Could not parse the data with JSON: \(data)")
+                return
+            }
+            
+            guard let results = parsedResult["results"] as? [[String:AnyObject]] else {
+                displayError("Could not parse: \(parsedResult)")
+                return
+            }
+            
+            if results.isEmpty {
+                UdacityResources.sharedInstance().method = "POST"
+                print("No data on the server.")
+            } else {
+                UdacityResources.sharedInstance().method = "PUT"
+                print("Data already exists on the server.")
+                
+                guard let objectIdDict = results.last else {
+                    displayError("Could not parse: \(results)")
+                    return
+                }
+                
+                UdacityResources.sharedInstance().objectId = objectIdDict["objectId"] as? String
+                
+            }
+            let inputLocationController = self.storyboard?.instantiateViewControllerWithIdentifier("InputLocationViewController")
+            self.presentViewController(inputLocationController!, animated: true, completion: nil)
+            
+        }
+        task.resume()
+        
     }
     
     @IBAction func logout(sender: AnyObject) {

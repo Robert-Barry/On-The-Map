@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
             email = emailTextField.text
             password = passwordTextField.text
             
-            getSessionID()
+            getSessionAndUdacityID()
             
         }
         
@@ -95,7 +95,7 @@ class LoginViewController: UIViewController {
     
     
     // HELPER FUNCTIONS
-    func getSessionID() {
+    func getSessionAndUdacityID() {
         print("Session ID called")
         
         let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
@@ -135,8 +135,11 @@ class LoginViewController: UIViewController {
                 displayError("No data was returned by the request!")
                 return
             }
+            
+            // Get the data minus the first 5 characters
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
             
+            // Get the parsed result
             let parsedResult: AnyObject!
             do {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments) as? NSDictionary
@@ -145,46 +148,127 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            // GUARD: Is there account data?
             guard let accountDict = parsedResult["account"] as? [String:AnyObject] else {
                 print("Could not parse the data: \(parsedResult)")
                 return
             }
             
+            // GUARD: Is there a Udacity ID
             guard let udacityId = accountDict["key"] as? String else {
                 print("Could not parse the data: \(accountDict)")
                 return
             }
             
+            // GUARD: Is there session data?
             guard let sessionDict = parsedResult["session"] as? [String:AnyObject] else {
                 print("Could not parse the data: \(parsedResult)")
                 return
             }
             
+            // GUARD: is there a session ID
             guard let sessionId = sessionDict["id"] as? String else {
                 print("Could not parse the data: \(sessionDict)")
                 return
             }
             
-            // Save the session ID as a resource
+            // Save the session ID and Udacity ID as resources.
             UdacityResources.sharedInstance().sessionId = sessionId
             UdacityResources.sharedInstance().udacityId = udacityId
             
-            performUIUpdatesOnMain {
-                self.goToMap()
-            }
+            self.getUserName()
 
         }
         task.resume()
         
     }
     
+    func getUserName() {
+        print("Get User Name")
+        
+        guard let udacityId = UdacityResources.sharedInstance().udacityId else {
+            print("Error getting guser ID")
+            return
+        }
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/\(udacityId)")!)
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            func displayError(error: String) {
+                print(error)
+                /*
+                 dispatch_async(dispatch_get_main_queue()) {
+                 self.setUIEnabled(true)
+                 self.debugTextLabel.text = "Login Failed!"
+                 }
+                 */
+            }
+            
+            // GUARD: Was there an error?
+            guard (error == nil) else {
+                displayError("There was an error with your request: \(error)")
+                return
+            }
+            
+            // GUARD: Did we get a successfull 2xx response?
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx: \((response as? NSHTTPURLResponse)?.statusCode))")
+                return
+            }
+            
+            // GUARD: Was the data returned
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            
+            // Get the data minus the first 5 characters
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            
+            // Get the parsed result
+            let parsedResult: AnyObject!
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments) as? NSDictionary
+            } catch {
+                print("Could not parse the data with JSON: \(data)")
+                return
+            }
+            
+            guard let userDict = parsedResult["user"] as? [String:AnyObject] else {
+                displayError("Could not parse: \(parsedResult)")
+                return
+            }
+            
+            guard let firstName = userDict["first_name"] as? String else {
+                displayError("Could not parse: \(userDict)")
+                return
+            }
+            
+            guard let lastName = userDict["last_name"] as? String else {
+                displayError("Could not parse: \(userDict)")
+                return
+            }
+            
+            UdacityResources.sharedInstance().firstName = firstName
+            UdacityResources.sharedInstance().lastName = lastName
+            
+            performUIUpdatesOnMain {
+                self.goToMap()
+            }
+            
+        }
+        task.resume()
+    }
     
+    // Segue to the map view
     func goToMap() {
         performSegueWithIdentifier("showMap", sender: self)
     }
     
     
-    
+    // KEYBOARD FUNCTIONS
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         
         let userInfo = notification.userInfo

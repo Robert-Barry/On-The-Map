@@ -11,10 +11,16 @@ import MapKit
 
 class InputLocationViewController: UIViewController {
 
+    // CONSTANTS
+    //let studentInfo = Student()
+    
+    // VARIABLES
     var userLocation: String!
     
+    // OUTLETS
     @IBOutlet weak var userLocationTextField: UITextField!
     
+    // OVERRIDES
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,14 +29,19 @@ class InputLocationViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         userLocationTextField.text = ""
+        
+        // Get the Udacity user data to save as a student object
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+    // ACTIONS
+    @IBAction func cancel(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    @IBAction func findOnTheMap(sender: AnyObject) {
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("InputURLViewController") as! InputURLViewController
         
-        let controller = segue.destinationViewController as! InputURLViewController
-        
-        controller.location = userLocationTextField.text
-        
+        // Search for map data using a natural search string
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = userLocationTextField.text
         
@@ -48,27 +59,17 @@ class InputLocationViewController: UIViewController {
                 return
             }
             
+            var studentData: Student!
+            
             for item in newResponse.mapItems {
-                print("Name: \(item.name)")
-                print("Latitude: \(item.placemark.location!.coordinate.latitude)")
-                print("Longitude: \(item.placemark.location!.coordinate.longitude)")
+                studentData = Student(mapString: item.name!, latitude: item.placemark.location!.coordinate.latitude, longitude: item.placemark.location!.coordinate.longitude)
+                
             }
+            
+            controller.studentData = studentData
+            
+            self.presentViewController(controller, animated: true, completion: nil)
         }
+        
     }
-
-    @IBAction func cancel(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
