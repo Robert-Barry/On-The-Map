@@ -232,19 +232,39 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 UdacityResources.sharedInstance().method = "POST"
                 print("No data on the server.")
             } else {
-                UdacityResources.sharedInstance().method = "PUT"
-                print("Data already exists on the server.")
                 
-                guard let objectIdDict = results.last else {
-                    displayError("Could not parse: \(results)")
+                let message = "You have already posted a student location. Would you like to overwrite your current location?"
+                
+                let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+                
+                let okAction = UIAlertAction(title: "Overwrite", style: .Default, handler: { action in
+                    UdacityResources.sharedInstance().method = "PUT"
+                    print("Data already exists on the server.")
+                    
+                    guard let objectIdDict = results.last else {
+                        displayError("Could not parse: \(results)")
+                        return
+                    }
+                    
+                    UdacityResources.sharedInstance().objectId = objectIdDict["objectId"] as? String
+                    
+                    let inputLocationController = self.storyboard?.instantiateViewControllerWithIdentifier("InputLocationViewController")
+                    self.presentViewController(inputLocationController!, animated: true, completion: nil)
+                })
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: { action in
                     return
+                })
+                
+                alert.addAction(okAction)
+                alert.addAction(cancelAction)
+                
+                performUIUpdatesOnMain {
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
                 
-                UdacityResources.sharedInstance().objectId = objectIdDict["objectId"] as? String
-                
             }
-            let inputLocationController = self.storyboard?.instantiateViewControllerWithIdentifier("InputLocationViewController")
-            self.presentViewController(inputLocationController!, animated: true, completion: nil)
+            
             
         }
         task.resume()

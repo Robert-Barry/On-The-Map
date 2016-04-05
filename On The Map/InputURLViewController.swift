@@ -14,14 +14,28 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     var studentData: Student?
     @IBOutlet weak var urlTextField: UITextField!
+    
+    let urlTextFieldDelegate = TextFieldDelegate()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        urlTextField.delegate = urlTextFieldDelegate
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
         self.mapView.delegate = self
         
         print("input url")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        urlTextField.text = ""
+        urlTextField.attributedPlaceholder = NSAttributedString(string: "Enter A Link To Share Here",
+                                                                         attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)])
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -163,6 +177,9 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func dismissKeyboard() {
+        urlTextField.resignFirstResponder()
+    }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         

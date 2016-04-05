@@ -12,7 +12,7 @@ import MapKit
 class InputLocationViewController: UIViewController {
 
     // CONSTANTS
-    //let studentInfo = Student()
+    let locationTextFieldDelegate = TextFieldDelegate()
     
     // VARIABLES
     var userLocation: String!
@@ -25,12 +25,18 @@ class InputLocationViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        userLocationTextField.delegate = locationTextFieldDelegate
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(animated: Bool) {
-        userLocationTextField.text = ""
         
         // Get the Udacity user data to save as a student object
+        userLocationTextField.text = ""
+        userLocationTextField.attributedPlaceholder = NSAttributedString(string: "Enter Your Location Here",
+                                                                         attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)])
     }
 
     // ACTIONS
@@ -73,4 +79,13 @@ class InputLocationViewController: UIViewController {
         }
         
     }
+    
+    func dismissKeyboard() {
+        userLocationTextField.resignFirstResponder()
+    }
 }
+
+
+    
+
+

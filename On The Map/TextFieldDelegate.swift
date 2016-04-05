@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LoginTextFieldDelegate: NSObject, UITextFieldDelegate {
+class TextFieldDelegate: NSObject, UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         

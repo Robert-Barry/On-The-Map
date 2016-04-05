@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // CONSTANTS
-    let loginTextFieldDelegate = LoginTextFieldDelegate()
+    let loginTextFieldDelegate = TextFieldDelegate()
     let warningColor = UIColor(colorLiteralRed: 1.0, green: 0.58, blue: 0.58, alpha: 1.0)
     
     // OUTLETS
