@@ -28,14 +28,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
         getStudentLocations()
+        
     }
     
 
     // Download student locations for display on the map
     func getStudentLocations() {
         print("Student Locations called")
+        
+        // Delete all the annotations to start completely fresh
+        annotations.removeAll()
+        mapView.removeAnnotations(mapView.annotations)
         
         let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
