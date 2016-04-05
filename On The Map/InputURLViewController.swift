@@ -102,11 +102,13 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
         
         print("{\"uniqueKey\": \"\(key)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaUrl)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}")
         
-        //request.HTTPBody = "{\"uniqueKey\": \"\(key)\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.322998, \"longitude\": -122.032182}".dataUsingEncoding(NSUTF8StringEncoding)
-        //let session = NSURLSession.sharedSession()
+        request.HTTPBody = "{\"uniqueKey\": \"\(key)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaUrl)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}".dataUsingEncoding(NSUTF8StringEncoding)
+        let session = NSURLSession.sharedSession()
         
         let mapViewController = storyboard?.instantiateViewControllerWithIdentifier("TabBarController")
-        presentViewController(mapViewController!, animated: true, completion: nil)
+        presentViewController(mapViewController!, animated: true, completion: {
+            
+        })
     }
     
     @IBAction func cancel(sender: AnyObject) {
