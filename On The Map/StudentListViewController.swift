@@ -78,7 +78,9 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     // TABLE VIEW DELEGATE
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let toOpen = annotations[indexPath.row].subtitle {
-            UIApplication.sharedApplication().openURL(NSURL(string: toOpen)!)
+            if let url = NSURL(string: toOpen) {
+                UIApplication.sharedApplication().openURL(url)
+            }
         }
     }
 

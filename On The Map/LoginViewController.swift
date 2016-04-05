@@ -33,11 +33,7 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = loginTextFieldDelegate
         passwordTextField.delegate = loginTextFieldDelegate
         
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,6 +44,12 @@ class LoginViewController: UIViewController {
         
         emailTextField.text = ""
         passwordTextField.text = ""
+        
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                                  attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                     attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
     
