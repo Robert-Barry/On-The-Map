@@ -282,7 +282,9 @@ class LoginViewController: UIViewController {
         
         // If the notification is WillShow, move the view up
         if notification.name == UIKeyboardWillShowNotification {
-            view.frame.origin.y -= getKeyboardHeight(notification) - 150
+            if view.frame.origin.y == 0 {
+                view.frame.origin.y -= getKeyboardHeight(notification) - 150
+            }
         } else { // else move the view down
             view.frame.origin.y = 0
         }
