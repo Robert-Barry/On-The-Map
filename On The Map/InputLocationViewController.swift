@@ -68,7 +68,8 @@ class InputLocationViewController: UIViewController {
             
             controller.studentData = studentData
             
-            self.presentViewController(controller, animated: true, completion: nil)
+            self.showViewController(controller, sender: self)
+            //self.presentViewController(controller, animated: true, completion: nil)
         }
         
     }
