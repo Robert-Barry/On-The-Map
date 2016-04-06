@@ -26,4 +26,6 @@ struct UdacityConstants {
     static let UdacitySession = "/session"
     static let UdacityUsers = "/users"
     
+    static let ParseStudentLocations = "/StudentLocation"
+    
 }

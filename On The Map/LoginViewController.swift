@@ -42,9 +42,11 @@ class LoginViewController: UIViewController {
         
         subscribeToKeyboardNotifications()
         
+        // Clear the text fields
         emailTextField.text = ""
         passwordTextField.text = ""
         
+        // Give placeholder text to both text fields
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
                                                                   attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         
@@ -88,12 +90,14 @@ class LoginViewController: UIViewController {
             email = emailTextField.text
             password = passwordTextField.text
             
+            // Create the post body for getting session and Udacity IDs
             let postBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}"
             
-            //getSessionAndUdacityID()
+            // Authenticate the user's login
             UdacityClient.sharedInstance().authenticate(postBody, completionHandlerForAuth: { (success, errorString) in
                 if success {
                     performUIUpdatesOnMain {
+                        // Go to the next view
                         self.goToMap()
                     }
                 } else {
@@ -104,7 +108,11 @@ class LoginViewController: UIViewController {
         }
         
     }
-
+    
+    
+    
+    // HELPER FUNCTIONS
+    
     func displayError(errorString: String) {
         print("Error")
     }
@@ -114,8 +122,20 @@ class LoginViewController: UIViewController {
         performSegueWithIdentifier("showMap", sender: self)
     }
     
+    // Check for a valid email address
+    // Code from http://stackoverflow.com/questions/25471114/how-to-validate-an-e-mail-address-in-swift
+    func isValidEmail(testStr:String) -> Bool {
+        // println("validate calendar: \(testStr)")
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
+    }
+    
+    
     
     // KEYBOARD FUNCTIONS
+    
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         
         let userInfo = notification.userInfo
@@ -150,16 +170,6 @@ class LoginViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
         
-    }
-    
-    // Check for a valid email address
-    // Code from http://stackoverflow.com/questions/25471114/how-to-validate-an-e-mail-address-in-swift
-    func isValidEmail(testStr:String) -> Bool {
-        // println("validate calendar: \(testStr)")
-        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluateWithObject(testStr)
     }
 
 }

@@ -13,16 +13,7 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     
     // Variables
     var annotations = [MKPointAnnotation]()
-
-    // OVERRIDES
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
     
-    override func viewWillAppear(animated: Bool) {
-    }
     
 
     // ACTIONS
@@ -49,7 +40,8 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
  
     
-    // TABLE VIEW DATA SOURCE
+    // MARK: TABLE VIEW DATA SOURCE
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return annotations.count
     }
@@ -75,7 +67,8 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     
-    // TABLE VIEW DELEGATE
+    // MARK: TABLE VIEW DELEGATE
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let toOpen = annotations[indexPath.row].subtitle {
             if let url = NSURL(string: toOpen) {

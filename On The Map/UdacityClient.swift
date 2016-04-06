@@ -9,6 +9,7 @@
 //
 
 import Foundation
+import MapKit
 
 class UdacityClient: NSObject {
     
@@ -142,6 +143,116 @@ class UdacityClient: NSObject {
             }
         }
     }
+    
+    
+    
+    // MARK: MapViewController Functions
+    
+    // Get all student locations
+    func getStudentLocations(completionHandlerForStudentLocations: (success: Bool, studentLocations: [MKPointAnnotation]?, errorString: String?) -> Void) {
+        
+        print("Getting student locations...")
+        
+        // Creat empty parameters
+        let parameters = [String: AnyObject]()
+        
+        // GET the student locations
+        taskForGETMethod(UdacityConstants.ParseApi, method: UdacityConstants.ParseStudentLocations, parameters: parameters) { (results, error) in
+            
+            if let error = error {
+                print(error)
+                completionHandlerForStudentLocations(success: false, studentLocations: nil, errorString: "There was an error retrieving student locations.")
+            } else {
+
+                // Unwrapping results
+                guard let resultsArray = results["results"] as? [[String:AnyObject]] else {
+                    completionHandlerForStudentLocations(success: false, studentLocations: nil, errorString: "There was an error retrieving student locations.")
+                    return
+                }
+                
+                var annotations = [MKPointAnnotation]()
+                
+                // Loop through each dictionary in the student array
+                for result in resultsArray {
+                    
+                    // Get the latitude and longitude for each student
+                    let lat = CLLocationDegrees(result["latitude"] as! Double)
+                    let long = CLLocationDegrees(result["longitude"] as! Double)
+                    
+                    // Create a coordinate for each student
+                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                    
+                    // Get the data needed for each student
+                    let first = result["firstName"] as! String
+                    let last = result["lastName"] as! String
+                    let mediaURL = result["mediaURL"] as! String
+                    
+                    // Create the annotation and set its coordiate, title, and subtitle properties
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate
+                    annotation.title = "\(first) \(last)"
+                    annotation.subtitle = mediaURL
+                    
+                    // Place the annotation in an array of annotations.
+                    annotations.append(annotation)
+                    
+                }
+                
+                completionHandlerForStudentLocations(success: true, studentLocations: annotations, errorString: nil)
+            }
+            
+        }
+    }
+    
+    func locationPostOrPut(completionHandlerForPostOrPut: (success: Bool, errorString: String?) ->Void) {
+        
+        print("Deciding on POST or PUT...")
+        
+        guard let uniqueKey = UdacityResources.sharedInstance().udacityId else {
+            print("Error receiveing the key")
+            return
+        }
+        
+        // Create empty parameters
+        var parameters = [String: AnyObject]()
+    
+        parameters["where"] = "{\"uniqueKey\":\"\(uniqueKey)\"}"
+        
+        // GET data to test if user as posted before
+        taskForGETMethod(UdacityConstants.ParseApi, method: UdacityConstants.ParseStudentLocations, parameters: parameters) { (results, error) in
+            
+            if let error = error {
+                print(error)
+                completionHandlerForPostOrPut(success: false, errorString: "There was an error: \(error)")
+            } else {
+                
+                guard let results = results["results"] as? [[String:AnyObject]] else {
+                    completionHandlerForPostOrPut(success: false, errorString: "There was an error retrieving some data")
+                    return
+                }
+                
+                if results.isEmpty {
+                    UdacityResources.sharedInstance().method = "POST"
+                    print("No data on the server, using POST")
+                } else {
+                    UdacityResources.sharedInstance().method = "PUT"
+                    print("Data found, using PUT")
+                    
+                    guard let objectIdDict = results.last else {
+                        completionHandlerForPostOrPut(success: false, errorString: "There was an error retrieving some data")
+                        return
+                    }
+                    
+                    UdacityResources.sharedInstance().objectId = objectIdDict["objectId"] as? String
+                }
+                
+                completionHandlerForPostOrPut(success: true, errorString: nil)
+            }
+            
+        }
+    
+    
+    }
 
     
     
@@ -157,7 +268,7 @@ class UdacityClient: NSObject {
         let request = buildRequest(apiName, method: method, parameters: parameters)
         
         // Build the task
-        let task = buildTask(request, completionHandler: completionHandlerForGET)
+        let task = buildTask(apiName, request: request, completionHandler: completionHandlerForGET)
         
         task.resume()
         
@@ -177,7 +288,7 @@ class UdacityClient: NSObject {
         request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
         
         // Build the task
-        let task = buildTask(request, completionHandler: completionHandlerForPOST)
+        let task = buildTask(apiName, request: request, completionHandler: completionHandlerForPOST)
         
         task.resume()
         
@@ -213,12 +324,12 @@ class UdacityClient: NSObject {
             request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
             
         }
-        
+        print(request.URL)
         return request
         
     }
     
-    func buildTask(request: NSMutableURLRequest, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func buildTask(apiName: String, request: NSMutableURLRequest, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         print("Building the task...")
         
@@ -251,7 +362,7 @@ class UdacityClient: NSObject {
             }
             
             // Convert the data to json
-            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandler)
+            self.convertDataWithCompletionHandler(apiName, data: data, completionHandlerForConvertData: completionHandler)
         }
         
         return task
@@ -259,11 +370,16 @@ class UdacityClient: NSObject {
     }
     
     // given raw JSON, return a usable Foundation object
-    private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
+    private func convertDataWithCompletionHandler(apiName: String, data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
         
         print("Converting data to json...")
         
-        let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+        var newData = data
+
+        if apiName == UdacityConstants.UdacityApi {
+            newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+        }
+        
         var parsedResult: AnyObject!
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
