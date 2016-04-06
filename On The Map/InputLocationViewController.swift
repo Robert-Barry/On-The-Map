@@ -20,6 +20,8 @@ class InputLocationViewController: UIViewController {
     // OUTLETS
     @IBOutlet weak var userLocationTextField: UITextField!
     
+    
+    
     // OVERRIDES
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,18 +35,26 @@ class InputLocationViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        // Get the Udacity user data to save as a student object
+        // Reset the text field
         userLocationTextField.text = ""
         userLocationTextField.attributedPlaceholder = NSAttributedString(string: "Enter Your Location Here",
                                                                          attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)])
     }
 
+    
+    
     // ACTIONS
     @IBAction func cancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func findOnTheMap(sender: AnyObject) {
+        
+        if userLocationTextField.text == "" {
+            displayError("You must enter a valid location!")
+            return
+        }
+        
         let controller = storyboard?.instantiateViewControllerWithIdentifier("InputURLViewController") as! InputURLViewController
         
         // Search for map data using a natural search string
@@ -80,8 +90,29 @@ class InputLocationViewController: UIViewController {
         
     }
     
+    
+    
+    // HELPER FUNCTIONS
     func dismissKeyboard() {
         userLocationTextField.resignFirstResponder()
+    }
+    
+    func displayError(errorString: String) {
+        // Show an alert
+        let alert = UIAlertController(title: "Alert!", message: errorString, preferredStyle: .Alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { action in
+            
+            // reset the UI and dismiss the alert
+            alert.dismissViewControllerAnimated(true, completion: nil)
+            
+        })
+        
+        alert.addAction(dismissAction)
+        
+        performUIUpdatesOnMain {
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 }
 

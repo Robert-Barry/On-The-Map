@@ -55,11 +55,12 @@ extension UdacityClient {
         
         // POST to get the session ID and Udacity ID in 1 request
         taskForPOSTMethod(UdacityConstants.UdacityApi, method: UdacityConstants.UdacitySession, parameters: parameters, jsonBody: jsonBody) { results, error in
-            
+
             if let error = error {
                 
                 print(error)
-                completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "There was an error retrieving your account information. Please try again.")
+
+                completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "Wrong email and/or password. Please try again.")
                 
             } else {
                 
@@ -71,19 +72,19 @@ extension UdacityClient {
                                 // If the unwrapping chain is successful, end the chain
                                 completionHandlerForIds(success: true, sessionId: sessionId, udacityId: udacityId, errorString: nil)
                             } else {
-                                completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "There was an error retrieving your account information. Please try again.")
+                                completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "There was a problem retrieving your account information. Please try again.")
                                 print("There was an error unwrapping ID")
                             }
                         } else {
-                            completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "There was an error retrieving your account information. Please try again.")
+                            completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "There was a problem retrieving your account information. Please try again.")
                             print("There was an error unwrapping session.")
                         }
                     } else {
-                        completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "There was an error retrieving your account information. Please try again.")
+                        completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "There was a problem retrieving your account information. Please try again.")
                         print("There was an error unwrapping key.")
                     }
                 } else {
-                    completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "There was an error retrieving your account information. Please try again.")
+                    completionHandlerForIds(success: false, sessionId: nil, udacityId: nil, errorString: "There was a problem retrieving your account information. Please try again.")
                     print("There was an error unwrapping results.")
                 }
                 
@@ -250,6 +251,7 @@ extension UdacityClient {
     
     
     // MARK: InputURLViewController functions
+    
     func submit(studentData: Student?, completionHandlerForSubmit: (success: Bool, errorString: String?) ->Void) {
         
         print("Submitting the user information...")

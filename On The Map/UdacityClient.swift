@@ -213,7 +213,7 @@ class UdacityClient: NSObject {
             let queryItem = NSURLQueryItem(name: key, value: "\(value)")
             components.queryItems!.append(queryItem)
         }
-        
+
         return components.URL!
     }
     

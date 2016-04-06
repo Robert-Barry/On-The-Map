@@ -27,8 +27,39 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func inputLocation(sender: AnyObject) {
-        let inputLocationController = storyboard?.instantiateViewControllerWithIdentifier("InputLocationViewController")
-        presentViewController(inputLocationController!, animated: true, completion: nil)
+        UdacityClient.sharedInstance().locationPostOrPut() { (success, error) in
+            if success {
+                
+                // Create an alert if data already exists for this user
+                if UdacityResources.sharedInstance().method == "PUT" {
+                    
+                    let message = "You have already posted a student location. Would you like to overwrite your current location?"
+                    
+                    let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+                    
+                    let okAction = UIAlertAction(title: "Overwrite", style: .Default, handler: { action in
+                        
+                        self.goToInputUrlVC()
+                        
+                    })
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: { action in
+                        return
+                    })
+                    
+                    alert.addAction(okAction)
+                    alert.addAction(cancelAction)
+                    
+                    performUIUpdatesOnMain {
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                } else {
+                    self.goToInputUrlVC()
+                }
+            } else {
+                self.displayError(error!)
+            }
+        }
     }
     
     @IBAction func logout(sender: AnyObject) {
@@ -64,6 +95,33 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
         cell.imageView?.image = UIImage(named: "mapNav")
         
         return cell
+    }
+    
+    
+    
+    // HELPER FUNCTIONS
+    
+    func goToInputUrlVC() {
+        let inputLocationController = self.storyboard?.instantiateViewControllerWithIdentifier("InputLocationViewController")
+        self.presentViewController(inputLocationController!, animated: true, completion: nil)
+    }
+    
+    func displayError(errorString: String) {
+        // Show an alert
+        let alert = UIAlertController(title: "Alert!", message: errorString, preferredStyle: .Alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { action in
+            
+            // reset the UI and dismiss the alert
+            alert.dismissViewControllerAnimated(true, completion: nil)
+            
+        })
+        
+        alert.addAction(dismissAction)
+        
+        performUIUpdatesOnMain {
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     

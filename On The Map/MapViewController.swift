@@ -162,7 +162,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func displayError(errorString: String) {
-        print(errorString)
+        // Show an alert
+        let alert = UIAlertController(title: "Alert!", message: errorString, preferredStyle: .Alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { action in
+            
+            // reset the UI and dismiss the alert
+            alert.dismissViewControllerAnimated(true, completion: nil)
+            
+        })
+        
+        alert.addAction(dismissAction)
+        
+        performUIUpdatesOnMain {
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     func goToInputUrlVC() {

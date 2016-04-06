@@ -42,16 +42,8 @@ class LoginViewController: UIViewController {
         
         subscribeToKeyboardNotifications()
         
-        // Clear the text fields
-        emailTextField.text = ""
-        passwordTextField.text = ""
+        resetUI()
         
-        // Give placeholder text to both text fields
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
-                                                                  attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-        
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                                     attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
     
@@ -114,7 +106,25 @@ class LoginViewController: UIViewController {
     // HELPER FUNCTIONS
     
     func displayError(errorString: String) {
-        print("Error")
+        
+        print(errorString)
+        
+        // Show an alert
+        let alert = UIAlertController(title: "Alert!", message: errorString, preferredStyle: .Alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { action in
+            
+            // reset the UI and dismiss the alert
+            self.resetUI()
+            alert.dismissViewControllerAnimated(true, completion: nil)
+            
+        })
+        
+        alert.addAction(dismissAction)
+        
+        performUIUpdatesOnMain {
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     // Segue to the map view
@@ -130,6 +140,19 @@ class LoginViewController: UIViewController {
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
+    }
+    
+    func resetUI() {
+        // Clear the text fields
+        emailTextField.text = ""
+        passwordTextField.text = ""
+        
+        // Give placeholder text to both text fields
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                                  attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                     attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
     

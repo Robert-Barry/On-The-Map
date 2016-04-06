@@ -11,12 +11,19 @@ import MapKit
 
 class InputURLViewController: UIViewController, MKMapViewDelegate {
     
-    @IBOutlet weak var mapView: MKMapView!
+    // VARIABLES
     var studentData: Student?
-    @IBOutlet weak var urlTextField: UITextField!
     
+    // CONSTANTS
     let urlTextFieldDelegate = TextFieldDelegate()
+    
+    // OUTLETS
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var urlTextField: UITextField!
 
+    
+    
+    // OVERRIDES
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,15 +59,25 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
         
     }
     
+    
+    
+    // ACTIONS
     @IBAction func submit(sender: AnyObject) {
+        
+        if urlTextField.text == "" {
+            displayError("You must enter a valid URL!")
+            return
+        }
         
         studentData?.mediaURL = urlTextField.text
         
         // Send the user's information to the server
         UdacityClient.sharedInstance().submit(studentData, completionHandlerForSubmit: { (success, errorString) in
             if success {
+                
                 let presentingVC = self.presentingViewController
                 
+                // If everything works, go back to MapViewController
                 performUIUpdatesOnMain {
                     self.dismissViewControllerAnimated(false, completion: {
                         presentingVC?.dismissViewControllerAnimated(false, completion: nil)
@@ -81,6 +98,28 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
         urlTextField.resignFirstResponder()
     }
     
+    func displayError(errorString: String) {
+        // Show an alert
+        let alert = UIAlertController(title: "Alert!", message: errorString, preferredStyle: .Alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { action in
+            
+            // reset the UI and dismiss the alert
+            alert.dismissViewControllerAnimated(true, completion: nil)
+            
+        })
+        
+        alert.addAction(dismissAction)
+        
+        performUIUpdatesOnMain {
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+    // MARK: Map Delegate
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
@@ -98,10 +137,6 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
         }
         
         return pinView
-    }
-    
-    func displayError(errorString: String) {
-        print(errorString)
     }
 
     /*
