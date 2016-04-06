@@ -183,8 +183,8 @@ class LoginViewController: UIViewController {
     
     func subscribeToKeyboardNotifications() {
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardShowAndHide:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardShowAndHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardShowAndHide), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardShowAndHide), name: UIKeyboardWillHideNotification, object: nil)
         
     }
     

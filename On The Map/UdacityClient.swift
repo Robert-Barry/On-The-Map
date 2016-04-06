@@ -19,7 +19,7 @@ class UdacityClient: NSObject {
     
     // MARK: Get
     
-    func taskForGETMethod(apiName: String, method: String, var parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGETMethod(apiName: String, method: String, parameters: [String: AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         print("Task for GET method called")
         
@@ -37,7 +37,7 @@ class UdacityClient: NSObject {
     
     // MARK: Post
     
-    func taskForPOSTMethod(apiName: String, method: String, var parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(apiName: String, method: String, parameters: [String: AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         print("Task for POST method called")
         
@@ -57,7 +57,7 @@ class UdacityClient: NSObject {
     
     // MARK: Put
     
-    func taskForPUTMethod(apiName: String, method: String, var parameters: [String:AnyObject], jsonBody: String, completionHandlerForPUT: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPUTMethod(apiName: String, method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPUT: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         print("Task for PUT method called")
         
@@ -107,7 +107,7 @@ class UdacityClient: NSObject {
     
     // MARK: Helper functions
     
-    func buildRequest(apiName: String, method: String, var parameters: [String:AnyObject]) -> NSMutableURLRequest {
+    func buildRequest(apiName: String, method: String, parameters: [String:AnyObject]) -> NSMutableURLRequest {
         
         print("Building the request...")
         

@@ -29,7 +29,7 @@ class InputLocationViewController: UIViewController {
         // Do any additional setup after loading the view.
         userLocationTextField.delegate = locationTextFieldDelegate
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     

@@ -318,7 +318,7 @@ extension UdacityClient {
             
         }
         
-        var parameters = [String: AnyObject]()
+        let parameters = [String: AnyObject]()
         
         taskForPUTMethod(UdacityConstants.ParseApi, method: method, parameters: parameters, jsonBody: jsonBody) { (results, error) in
             
