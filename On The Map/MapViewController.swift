@@ -75,6 +75,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBAction func logout(sender: AnyObject) {
         print("Logging out")
         
+        UdacityClient.sharedInstance().logout() { (success, error) in
+            if success {
+                print("Success")
+                performUIUpdatesOnMain {
+                    self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+                }
+            } else {
+                self.displayError(error!)
+            }
+            
+        }
+        /*
         let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
         request.HTTPMethod = "DELETE"
         var xsrfCookie: NSHTTPCookie? = nil
@@ -108,6 +120,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
         }
         task.resume()
+ */
         
     }
     

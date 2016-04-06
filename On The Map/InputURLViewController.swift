@@ -56,121 +56,21 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
         
         studentData?.mediaURL = urlTextField.text
         
-        var urlString: String!
-        var url: NSURL!
-        
-        // UPLOAD DATA HERE!!
-        if UdacityResources.sharedInstance().method! == "POST" {
-            urlString = "https://api.parse.com/1/classes/StudentLocation"
-        } else {
-            guard let objectId = UdacityResources.sharedInstance().objectId else {
-                print("Problem with the object ID")
-                return
+        // Send the user's information to the server
+        UdacityClient.sharedInstance().submit(studentData, completionHandlerForSubmit: { (success, errorString) in
+            if success {
+                let presentingVC = self.presentingViewController
+                
+                performUIUpdatesOnMain {
+                    self.dismissViewControllerAnimated(false, completion: {
+                        presentingVC?.dismissViewControllerAnimated(false, completion: nil)
+                    })
+                }
+            } else {
+                self.displayError(errorString!)
             }
-            urlString = "https://api.parse.com/1/classes/StudentLocation/\(objectId)"
-        }
+        })
         
-        url = NSURL(string: urlString)
-        
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = UdacityResources.sharedInstance().method!
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        guard let key = studentData?.uniqueKey else {
-            print("Error with unique key")
-            return
-        }
-        
-        guard let firstName = studentData?.firstName else {
-            print("Error with first name")
-            return
-        }
-        
-        guard let lastName = studentData?.lastName else {
-            print("Error with last name")
-            return
-        }
-        
-        guard let mapString = studentData?.mapString else {
-            print("Error with map string")
-            return
-        }
-        
-        guard let mediaUrl = studentData?.mediaURL else {
-            print("Error with media URL")
-            return
-        }
-        
-        guard let latitude = studentData?.latitude else {
-            print("Error with latitude")
-            return
-        }
-        
-        guard let longitude = studentData?.longitude else {
-            print("Error with longitude")
-            return
-        }
-        
-        request.HTTPBody = "{\"uniqueKey\": \"\(key)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaUrl)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}".dataUsingEncoding(NSUTF8StringEncoding)
-        let session = NSURLSession.sharedSession()
-        
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            func displayError(error: String) {
-                print(error)
-                /*
-                 dispatch_async(dispatch_get_main_queue()) {
-                 self.setUIEnabled(true)
-                 self.debugTextLabel.text = "Login Failed!"
-                 }
-                 */
-            }
-            
-            // GUARD: Was there an error?
-            guard (error == nil) else {
-                displayError("There was an error with your request: \(error)")
-                return
-            }
-            
-            // GUARD: Did we get a successfull 2xx response?
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                displayError("Your request returned a status code other than 2xx: \((response as? NSHTTPURLResponse)?.statusCode))")
-                return
-            }
-            
-            // GUARD: Was the data returned
-            guard let data = data else {
-                displayError("No data was returned by the request!")
-                return
-            }
-            
-            // Get the parsed result
-            let parsedResult: AnyObject!
-            do {
-                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? NSDictionary
-            } catch {
-                print("Could not parse the data with JSON: \(data)")
-                return
-            }
-            
-            print(parsedResult)
-            
-            let presentingVC = self.presentingViewController
-            
-            performUIUpdatesOnMain {
-                self.dismissViewControllerAnimated(false, completion: {
-                    presentingVC?.dismissViewControllerAnimated(false, completion: nil)
-                })
-            }
-
-        }
-        task.resume()
-        
-        //let mapViewController = storyboard?.instantiateViewControllerWithIdentifier("TabBarController")
-        //presentViewController(mapViewController!, animated: true, completion: {
-            
-        //})
     }
     
     @IBAction func cancel(sender: AnyObject) {
@@ -198,6 +98,10 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
         }
         
         return pinView
+    }
+    
+    func displayError(errorString: String) {
+        print(errorString)
     }
 
     /*
