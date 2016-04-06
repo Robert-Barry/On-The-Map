@@ -14,6 +14,7 @@
 		312107491CADA63C00A949BF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312107481CADA63C00A949BF /* Student.swift */; };
 		316CBBA91CA45869000316BF /* UdacityResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CBBA81CA45869000316BF /* UdacityResources.swift */; };
 		316CBBAB1CA45B5A000316BF /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CBBAA1CA45B5A000316BF /* GCDBlackBox.swift */; };
+		319DF54C1CB48D3200A35D08 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319DF54B1CB48D3200A35D08 /* UdacityClient.swift */; };
 		31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AD47401C76A50A0005B0B2 /* LoginViewController.swift */; };
 		31AD47431C76A6610005B0B2 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AD47421C76A6610005B0B2 /* TextFieldDelegate.swift */; };
 		31FB470D1C75000900B2E27E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FB470C1C75000900B2E27E /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 		312107481CADA63C00A949BF /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		316CBBA81CA45869000316BF /* UdacityResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityResources.swift; sourceTree = "<group>"; };
 		316CBBAA1CA45B5A000316BF /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		319DF54B1CB48D3200A35D08 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		31AD47401C76A50A0005B0B2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		31AD47421C76A6610005B0B2 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		31FB47091C75000900B2E27E /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 				316CBBA81CA45869000316BF /* UdacityResources.swift */,
 				31FDA0501CA474850047B724 /* UdacityConstants.swift */,
 				312107481CADA63C00A949BF /* Student.swift */,
+				319DF54B1CB48D3200A35D08 /* UdacityClient.swift */,
 			);
 			name = Udacity;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				31AD47431C76A6610005B0B2 /* TextFieldDelegate.swift in Sources */,
 				312107451CAD61B000A949BF /* InputLocationViewController.swift in Sources */,
 				311A01801CA5B4F5002AF5A8 /* StudentListViewController.swift in Sources */,
+				319DF54C1CB48D3200A35D08 /* UdacityClient.swift in Sources */,
 				31FB470D1C75000900B2E27E /* AppDelegate.swift in Sources */,
 				316CBBA91CA45869000316BF /* UdacityResources.swift in Sources */,
 				316CBBAB1CA45B5A000316BF /* GCDBlackBox.swift in Sources */,
