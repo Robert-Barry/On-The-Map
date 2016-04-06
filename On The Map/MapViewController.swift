@@ -86,41 +86,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
             
         }
-        /*
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
-        request.HTTPMethod = "DELETE"
-        var xsrfCookie: NSHTTPCookie? = nil
-        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        for cookie in sharedCookieStorage.cookies! {
-            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
-        }
-        if let xsrfCookie = xsrfCookie {
-            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
-        }
-        
-        let session = NSURLSession.sharedSession()
-        print("Session")
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            
-            if error != nil { // Handle error…
-                return
-            }
-            
-            guard let oldData = data else {
-                print("Problem with the data")
-                return
-            }
-            let newData = oldData.subdataWithRange(NSMakeRange(5, oldData.length - 5)) /* subset response data! */
-            
-            print(NSString(data: newData, encoding: NSUTF8StringEncoding))
-            
-            performUIUpdatesOnMain {
-                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
-            }
-            
-        }
-        task.resume()
- */
         
     }
     
@@ -135,12 +100,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         UdacityClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
             if success {
                 
-                guard let studentAnnotations = studentLocations else {
+                guard let studentLocations = studentLocations else {
                     self.displayError("There was a problem with retrieving the student locations")
                     return
                 }
                 
-                self.annotations = studentAnnotations
+                self.annotations = studentLocations
                 
                 // Send student data to the Student List View Controller
                 let tabBarController = self.navigationController?.tabBarController

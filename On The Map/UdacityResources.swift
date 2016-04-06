@@ -18,6 +18,7 @@ class UdacityResources {
     var lastName: String? = nil
     var method: String? = "POST"
     var objectId: String? = nil
+    var studentInformationArray: [StudentInformation]? = nil
     
     // Create a singleton
     class func sharedInstance() -> UdacityResources {

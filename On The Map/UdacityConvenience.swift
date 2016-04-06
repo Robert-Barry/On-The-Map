@@ -164,23 +164,32 @@ extension UdacityClient {
                     return
                 }
                 
-                var annotations = [MKPointAnnotation]()
+                var studentInfo = [StudentInformation]()
+                var studentAnnotations = [MKPointAnnotation]()
                 
                 // Loop through each dictionary in the student array
                 for result in resultsArray {
                     
+                    let latitude = result["latitude"] as! Double
+                    let longitude = result["longitude"] as! Double
+                    /*
                     // Get the latitude and longitude for each student
                     let lat = CLLocationDegrees(result["latitude"] as! Double)
                     let long = CLLocationDegrees(result["longitude"] as! Double)
                     
                     // Create a coordinate for each student
                     let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                    
+                    */
                     // Get the data needed for each student
                     let first = result["firstName"] as! String
                     let last = result["lastName"] as! String
                     let mediaURL = result["mediaURL"] as! String
                     
+                    let student = StudentInformation(studentInfoDict: ["title": "\(first) \(last)", "latitude": latitude, "longitude": longitude, "mediaUrl": mediaURL])
+                    
+                    studentInfo.append(student)
+                    studentAnnotations.append(student.annotation)
+                    /*
                     // Create the annotation and set its coordiate, title, and subtitle properties
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = coordinate
@@ -189,10 +198,13 @@ extension UdacityClient {
                     
                     // Place the annotation in an array of annotations.
                     annotations.append(annotation)
-                    
+                    */
                 }
                 
-                completionHandlerForStudentLocations(success: true, studentLocations: annotations, errorString: nil)
+                UdacityResources.sharedInstance().studentInformationArray = [StudentInformation]()
+                UdacityResources.sharedInstance().studentInformationArray = studentInfo
+                
+                completionHandlerForStudentLocations(success: true, studentLocations: studentAnnotations, errorString: nil)
             }
             
         }
