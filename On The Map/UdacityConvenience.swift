@@ -143,24 +143,24 @@ extension UdacityClient {
     // MARK: MapViewController Functions
     
     // Get all student locations
-    func getStudentLocations(completionHandlerForStudentLocations: (success: Bool, studentLocations: [MKPointAnnotation]?, errorString: String?) -> Void) {
+    func getStudentLocations(completionHandlerForStudentLocations: (success: Bool, errorString: String?) -> Void) {
         
         print("Getting student locations...")
         
         // Creat empty parameters
-        let parameters = [String: AnyObject]()
+        let parameters = ["limit": 100, "order": "-updatedAt"]
         
         // GET the student locations
         taskForGETMethod(UdacityConstants.ParseApi, method: UdacityConstants.ParseStudentLocations, parameters: parameters) { (results, error) in
             
             if let error = error {
                 print(error)
-                completionHandlerForStudentLocations(success: false, studentLocations: nil, errorString: "There was an error retrieving student locations.")
+                completionHandlerForStudentLocations(success: false, errorString: "There was an error retrieving student locations.")
             } else {
                 
                 // Unwrapping results
                 guard let resultsArray = results["results"] as? [[String:AnyObject]] else {
-                    completionHandlerForStudentLocations(success: false, studentLocations: nil, errorString: "There was an error retrieving student locations.")
+                    completionHandlerForStudentLocations(success: false, errorString: "There was an error retrieving student locations.")
                     return
                 }
                 
@@ -172,14 +172,7 @@ extension UdacityClient {
                     
                     let latitude = result["latitude"] as! Double
                     let longitude = result["longitude"] as! Double
-                    /*
-                    // Get the latitude and longitude for each student
-                    let lat = CLLocationDegrees(result["latitude"] as! Double)
-                    let long = CLLocationDegrees(result["longitude"] as! Double)
-                    
-                    // Create a coordinate for each student
-                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                    */
+
                     // Get the data needed for each student
                     let first = result["firstName"] as! String
                     let last = result["lastName"] as! String
@@ -189,22 +182,18 @@ extension UdacityClient {
                     
                     studentInfo.append(student)
                     studentAnnotations.append(student.annotation)
-                    /*
-                    // Create the annotation and set its coordiate, title, and subtitle properties
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = coordinate
-                    annotation.title = "\(first) \(last)"
-                    annotation.subtitle = mediaURL
-                    
-                    // Place the annotation in an array of annotations.
-                    annotations.append(annotation)
-                    */
+
                 }
                 
-                UdacityResources.sharedInstance().studentInformationArray = [StudentInformation]()
+                // Store an array of students and an array of MKPointAnnotations in UdacityResources
+                // per the rubric for the project
+                UdacityResources.sharedInstance().studentInformationArray?.removeAll()
                 UdacityResources.sharedInstance().studentInformationArray = studentInfo
+                UdacityResources.sharedInstance().studentAnnotations?.removeAll()
+                UdacityResources.sharedInstance().studentAnnotations = studentAnnotations
                 
-                completionHandlerForStudentLocations(success: true, studentLocations: studentAnnotations, errorString: nil)
+                
+                completionHandlerForStudentLocations(success: true, errorString: nil)
             }
             
         }

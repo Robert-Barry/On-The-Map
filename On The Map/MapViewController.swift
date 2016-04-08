@@ -14,9 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // OUTLETS
     @IBOutlet weak var mapView: MKMapView!
-    
-    // VARIABLES
-    var annotations = [MKPointAnnotation]()
+
 
     // OVERRIDES
     
@@ -94,18 +92,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // HELPER FUNCTIONS
     
     func getStudentLocations() {
-        annotations.removeAll()
+
         mapView.removeAnnotations(mapView.annotations)
         
-        UdacityClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
+        UdacityClient.sharedInstance().getStudentLocations() { (success, error) in
             if success {
                 
-                guard let studentLocations = studentLocations else {
-                    self.displayError("There was a problem with retrieving the student locations")
+                // Pull from the annotations array stored in UdacityResources
+                guard let annotations = UdacityResources.sharedInstance().studentAnnotations else {
                     return
                 }
-                
-                self.annotations = studentLocations
                 
                 // Send student data to the Student List View Controller
                 let tabBarController = self.navigationController?.tabBarController
@@ -114,8 +110,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 
                 performUIUpdatesOnMain {
                     // When the array is complete, add the annotations to the map.
-                    self.mapView.addAnnotations(self.annotations)
-                    svc.annotations = self.annotations
+                    self.mapView.addAnnotations(annotations)
+                    svc.annotations = annotations
                 }
                 
                 print("Student locations recieved")

@@ -66,19 +66,21 @@ class InputLocationViewController: UIViewController {
         search.startWithCompletionHandler { (response, error) in
             
             guard (error == nil) else {
-                print("There was an error with your request")
+                self.displayError("The location was not found! Please try again.")
+                self.userLocationTextField.text = ""
                 return
             }
             
             guard let newResponse = response else {
-                print("There was a problem with the response")
+                self.displayError("There was a problem with the response")
+                self.userLocationTextField.text = ""
                 return
             }
             
             var studentData: Student!
             
             for item in newResponse.mapItems {
-                studentData = Student(mapString: item.name!, latitude: item.placemark.location!.coordinate.latitude, longitude: item.placemark.location!.coordinate.longitude)
+                studentData = Student(studentDict: ["mapString": item.name!, "latitude": item.placemark.location!.coordinate.latitude, "longitude": item.placemark.location!.coordinate.longitude])
                 
             }
             

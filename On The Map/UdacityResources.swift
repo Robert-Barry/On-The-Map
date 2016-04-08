@@ -8,6 +8,7 @@
 // Class to create a singleton for data that will be used throughout the application
 
 import Foundation
+import MapKit
 
 class UdacityResources {
     
@@ -19,6 +20,7 @@ class UdacityResources {
     var method: String? = "POST"
     var objectId: String? = nil
     var studentInformationArray: [StudentInformation]? = nil
+    var studentAnnotations: [MKPointAnnotation]? = nil
     
     // Create a singleton
     class func sharedInstance() -> UdacityResources {

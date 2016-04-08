@@ -18,11 +18,12 @@ struct Student {
     let latitude: Double! // the latitude of the student location (ranges from -90 to 90)
     let longitude: Double! // the longitude of the student location (ranges from -180 to 180)
     
-    init(mapString: String, latitude: Double, longitude: Double) {
+    //init(mapString: String, latitude: Double, longitude: Double) {
+    init(studentDict: [String: AnyObject]) {
         
-        self.mapString = mapString
-        self.latitude = latitude
-        self.longitude = longitude
+        self.mapString = studentDict["mapString"] as! String
+        self.latitude = studentDict["latitude"] as! Double
+        self.longitude = studentDict["longitude"] as! Double
 
         self.uniqueKey = UdacityResources.sharedInstance().udacityId
         self.firstName = UdacityResources.sharedInstance().firstName

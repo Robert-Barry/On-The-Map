@@ -18,6 +18,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var actvityBackground: UIView!
     
     // VARIABLES
     var email: String!
@@ -75,6 +77,12 @@ class LoginViewController: UIViewController {
             
         } else {
             
+            actvityBackground.hidden = false
+            activityIndicator.hidden = false
+            
+            activityIndicator.startAnimating()
+            
+            
             loginLabel.font = loginLabel.font.fontWithSize(20)
             loginLabel.textColor = UIColor.whiteColor()
             loginLabel.text = "Login to Udacity"
@@ -90,10 +98,12 @@ class LoginViewController: UIViewController {
                 if success {
                     performUIUpdatesOnMain {
                         // Go to the next view
+                        self.activityIndicator.stopAnimating()
                         self.goToMap()
                     }
                 } else {
                     self.displayError(errorString!)
+
                 }
             })
             
@@ -143,6 +153,13 @@ class LoginViewController: UIViewController {
     }
     
     func resetUI() {
+        
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        
+        // Clear the actitivity view
+        activityIndicator.hidden = true
+        actvityBackground.hidden = true
+        
         // Clear the text fields
         emailTextField.text = ""
         passwordTextField.text = ""
