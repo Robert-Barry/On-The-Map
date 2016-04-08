@@ -19,6 +19,8 @@ class InputLocationViewController: UIViewController {
     
     // OUTLETS
     @IBOutlet weak var userLocationTextField: UITextField!
+    @IBOutlet weak var activityBackground: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     
@@ -35,10 +37,9 @@ class InputLocationViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        // Reset the text field
-        userLocationTextField.text = ""
-        userLocationTextField.attributedPlaceholder = NSAttributedString(string: "Enter Your Location Here",
-                                                                         attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)])
+        super.viewWillAppear(animated)
+        
+        resetUI()
     }
 
     
@@ -49,6 +50,11 @@ class InputLocationViewController: UIViewController {
     }
 
     @IBAction func findOnTheMap(sender: AnyObject) {
+        
+        activityBackground.hidden = false
+        activityIndicator.hidden = false
+        
+        activityIndicator.startAnimating()
         
         if userLocationTextField.text == "" {
             displayError("You must enter a valid location!")
@@ -85,6 +91,7 @@ class InputLocationViewController: UIViewController {
             }
             
             controller.studentData = studentData
+            self.activityIndicator.stopAnimating()
             
             self.showViewController(controller, sender: self)
             //self.presentViewController(controller, animated: true, completion: nil)
@@ -95,6 +102,20 @@ class InputLocationViewController: UIViewController {
     
     
     // HELPER FUNCTIONS
+    func resetUI() {
+        
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        
+        // Hide the activty view and background
+        activityBackground.hidden = true
+        activityIndicator.hidden = true
+        
+        // Reset the text field
+        userLocationTextField.text = ""
+        userLocationTextField.attributedPlaceholder = NSAttributedString(string: "Enter Your Location Here",
+                                                                         attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)])
+    }
+    
     func dismissKeyboard() {
         userLocationTextField.resignFirstResponder()
     }
@@ -106,6 +127,7 @@ class InputLocationViewController: UIViewController {
         let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { action in
             
             // reset the UI and dismiss the alert
+            self.resetUI()
             alert.dismissViewControllerAnimated(true, completion: nil)
             
         })

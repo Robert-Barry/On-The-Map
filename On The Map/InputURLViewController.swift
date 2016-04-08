@@ -51,10 +51,9 @@ class InputURLViewController: UIViewController, MKMapViewDelegate {
         
         let dropPin = MKPointAnnotation()
         dropPin.coordinate = location
-        //dropPin.title = "New York City"
-        //mapView.centerCoordinate = location
+
         let regionToView = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.8, longitudeDelta: 0.8))
-        mapView.region = regionToView
+        mapView.setRegion(regionToView, animated: true)
         mapView.addAnnotation(dropPin)
         
     }
