@@ -12,7 +12,20 @@ import MapKit
 class StudentListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Variables
-    var annotations = [MKPointAnnotation]()
+    var annotations: [MKPointAnnotation]!
+    
+    
+    // OVERRIDES
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let newAnnotations = UdacityResources.sharedInstance().studentAnnotations else {
+            displayError("There was an error receiving student locations.")
+            return
+        }
+        
+        annotations = newAnnotations
+    }
     
     
 
