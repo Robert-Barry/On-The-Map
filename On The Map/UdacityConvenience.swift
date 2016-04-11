@@ -18,6 +18,12 @@ extension UdacityClient {
         
         print("Authenticating...")
         
+        // Check for an internet connection
+        if !UdacityResources.sharedInstance().reachable {
+            completionHandlerForAuth(success: false, errorString: "There is no internet connection! Find a valid network and try to login again!")
+            return
+        }
+        
         // Begin completion handler chain for the authentication process
         getSessionAndUdacityIds(jsonBody) { (success, sessionId, udacityId, errorString) in
             
@@ -147,6 +153,12 @@ extension UdacityClient {
         
         print("Getting student locations...")
         
+        // Check for an internet connection
+        if !UdacityResources.sharedInstance().reachable {
+            completionHandlerForStudentLocations(success: false, errorString: "There is no internet connection! Find a valid network and reload the map!")
+            return
+        }
+        
         // Creat empty parameters
         let parameters = ["limit": 100, "order": "-updatedAt"]
         
@@ -203,6 +215,12 @@ extension UdacityClient {
         
         print("Deciding on POST or PUT...")
         
+        // Check for an internet connection
+        if !UdacityResources.sharedInstance().reachable {
+            completionHandlerForPostOrPut(success: false, errorString: "There is no internet connection! Find a valid network and try again!")
+            return
+        }
+        
         guard let uniqueKey = UdacityResources.sharedInstance().udacityId else {
             print("Error receiveing the key")
             return
@@ -256,6 +274,12 @@ extension UdacityClient {
     func submit(studentData: Student?, completionHandlerForSubmit: (success: Bool, errorString: String?) ->Void) {
         
         print("Submitting the user information...")
+        
+        // Check for an internet connection
+        if !UdacityResources.sharedInstance().reachable {
+            completionHandlerForSubmit(success: false, errorString: "There is no internet connection! Find a valid network and try again!")
+            return
+        }
         
         guard let key = studentData?.uniqueKey else {
             print("Error with unique key")
@@ -329,6 +353,12 @@ extension UdacityClient {
     func logout(completionHandlerForLogout: (success: Bool, errorString: String?) -> Void) {
         
         print("Logging out...")
+        
+        // Check for an internet connection
+        if !UdacityResources.sharedInstance().reachable {
+            completionHandlerForLogout(success: false, errorString: "There is no internet connection! Find a valid network and try logging out again!")
+            return
+        }
         
         let parameters = [String: AnyObject]()
         

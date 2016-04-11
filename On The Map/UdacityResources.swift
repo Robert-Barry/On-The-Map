@@ -21,6 +21,7 @@ class UdacityResources {
     var objectId: String? = nil
     var studentInformationArray: [StudentInformation]? = nil
     var studentAnnotations: [MKPointAnnotation]? = nil
+    var reachable: Bool = true
     
     // Create a singleton
     class func sharedInstance() -> UdacityResources {

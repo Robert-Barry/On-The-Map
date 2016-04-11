@@ -61,6 +61,12 @@ class InputLocationViewController: UIViewController {
             return
         }
         
+        // Check for an internet connection
+        if !UdacityResources.sharedInstance().reachable {
+            displayError("There is no internet connection! Find a valid network and try again!")
+            return
+        }
+        
         let controller = storyboard?.instantiateViewControllerWithIdentifier("InputURLViewController") as! InputURLViewController
         
         // Search for map data using a natural search string

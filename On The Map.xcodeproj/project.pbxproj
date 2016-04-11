@@ -19,6 +19,7 @@
 		319DF54C1CB48D3200A35D08 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319DF54B1CB48D3200A35D08 /* UdacityClient.swift */; };
 		31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AD47401C76A50A0005B0B2 /* LoginViewController.swift */; };
 		31AD47431C76A6610005B0B2 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AD47421C76A6610005B0B2 /* TextFieldDelegate.swift */; };
+		31EC5A891CBC260000143989 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EC5A881CBC260000143989 /* Reachability.m */; };
 		31FB470D1C75000900B2E27E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FB470C1C75000900B2E27E /* AppDelegate.swift */; };
 		31FB47121C75000900B2E27E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31FB47101C75000900B2E27E /* Main.storyboard */; };
 		31FB47141C75000900B2E27E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31FB47131C75000900B2E27E /* Assets.xcassets */; };
@@ -58,6 +59,9 @@
 		319DF54B1CB48D3200A35D08 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		31AD47401C76A50A0005B0B2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		31AD47421C76A6610005B0B2 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
+		31EC5A871CBC260000143989 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		31EC5A881CBC260000143989 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		31EC5A8D1CBC287B00143989 /* ReachabilityHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityHeader.h; sourceTree = "<group>"; };
 		31FB47091C75000900B2E27E /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31FB470C1C75000900B2E27E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31FB47111C75000900B2E27E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -106,6 +110,16 @@
 			name = Delegates;
 			sourceTree = "<group>";
 		};
+		31EC5A831CBC25AC00143989 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				31EC5A871CBC260000143989 /* Reachability.h */,
+				31EC5A881CBC260000143989 /* Reachability.m */,
+				31EC5A8D1CBC287B00143989 /* ReachabilityHeader.h */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		31FB47001C75000800B2E27E = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +143,7 @@
 		31FB470B1C75000900B2E27E /* On The Map */ = {
 			isa = PBXGroup;
 			children = (
+				31EC5A831CBC25AC00143989 /* Reachability */,
 				316CBBAA1CA45B5A000316BF /* GCDBlackBox.swift */,
 				31AD473D1C76A2140005B0B2 /* Delegates */,
 				31FB473D1C75005F00B2E27E /* Model */,
@@ -279,7 +294,7 @@
 		31FB47011C75000800B2E27E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Robert Barry";
 				TargetAttributes = {
@@ -355,6 +370,7 @@
 				31AD47411C76A50A0005B0B2 /* LoginViewController.swift in Sources */,
 				312107471CAD75A200A949BF /* InputURLViewController.swift in Sources */,
 				31FDA0511CA474850047B724 /* UdacityConstants.swift in Sources */,
+				31EC5A891CBC260000143989 /* Reachability.m in Sources */,
 				312107491CADA63C00A949BF /* Student.swift in Sources */,
 				3102F4A21CA46F6800AEEA5F /* MapViewController.swift in Sources */,
 				31AD47431C76A6610005B0B2 /* TextFieldDelegate.swift in Sources */,
@@ -504,10 +520,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "On The Map/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.robertbarry.On-The-Map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "On The Map/ReachabilityHeader.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -515,10 +534,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "On The Map/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.robertbarry.On-The-Map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "On The Map/ReachabilityHeader.h";
 			};
 			name = Release;
 		};
